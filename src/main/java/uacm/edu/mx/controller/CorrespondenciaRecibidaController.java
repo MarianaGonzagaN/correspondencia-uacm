@@ -1,20 +1,20 @@
 package uacm.edu.mx.controller;
 
+import static org.springframework.http.HttpStatus.OK;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.compress.utils.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -22,20 +22,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import lombok.extern.slf4j.Slf4j;
+import uacm.edu.mx.data.RecibidaRequest;
+import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 import uacm.edu.mx.service.CorrespondenciaRecibidaService;
 import uacm.edu.mx.service.ExpedienteService;
 import uacm.edu.mx.service.GenerateExcelFileCorrRecPorFechaRecepService;
 
-@Controller
-@RequestMapping("/recibida")
+@Slf4j
+@RestController
+@RequestMapping("correspondencia/recibida")
 public class CorrespondenciaRecibidaController {
 
-	private final Logger logger = LoggerFactory.getLogger(CorrespondenciaRecibidaController.class);
+
 	private final ExpedienteService expedienteService;
 	private final CorrespondenciaRecibidaService corrRecService;
 	private final GenerateExcelFileCorrRecPorFechaRecepService genFileCorrRecFechRecepService;
@@ -48,14 +55,21 @@ public class CorrespondenciaRecibidaController {
 		this.corrRecService = corrRecService;
 		this.genFileCorrRecFechRecepService = genFileCorrRecFechRecepService;
 	}
-
-	@GetMapping("/agregar")
-	private String getCorrRec(@ModelAttribute CorrespondenciaRecibida corrRec) {
-
-		return "correspondenciaRecibida/agregarCorrRecibida";
+	
+	@PostMapping
+	public ResponseEntity<RecibidaResponse> createUser(@RequestBody final RecibidaRequest corrRec){
+		
+		return null;
 	}
 
-	@GetMapping(value = "/buscarPorTurno")
+	/*add
+	 * @GetMapping private String getCorrRec(@ModelAttribute CorrespondenciaRecibida
+	 * corrRec) {
+	 * 
+	 * return "correspondenciaRecibida/agregarCorrRecibida"; }
+	 */
+
+	@GetMapping("buscarPorTurno")
 	public String buscarPorTurno(Model model, RedirectAttributes attributes) {
 		String turno = "0";
 		turno = corrRecService.max();
