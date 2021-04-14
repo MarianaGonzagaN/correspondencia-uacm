@@ -15,69 +15,54 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-
 @Entity
-@Table(name="correspondencia_recibida")
+@Table(name = "correspondencia_recibida")
 public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
-	
-	
-	@Column(name="turno",nullable = false)
+
+	@Column(name = "turno", nullable = false)
 	private String turno;
-	
-	@Column(name="responsable_recepcion")
+
+	@Column(name = "responsable_recepcion")
 	private String responsableRecepcion;
-	
-	@Column(name="nombre_remitente")
+
+	@Column(name = "nombre_remitente")
 	private String nombreRemitente;
-	
+
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	@Column(name="fecha_recepcion",nullable = false)
-	private Date fechaRecepcion; 
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "fecha_recepcion", nullable = false)
+	private Date fechaRecepcion;
+
 	@Lob
-	@Type(type="org.hibernate.type.BinaryType")
+	@Type(type = "org.hibernate.type.BinaryType")
 	private byte[] documento;
-	
+
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	@Column(name="fecha_turnado",nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "fecha_turnado", nullable = false)
 	private Date fechaTurnado;
-	
-	@Column(name="tipo_documento")
+
+	@Column(name = "tipo_documento")
 	private String tipoDocumento;
-	
-	@Column(name="nombre_documento")
+
+	@Column(name = "nombre_documento")
 	private String nombreDocumento;
 
-	
-
-	
-
 	public CorrespondenciaRecibida() {
-		
+
 	}
-
-
 
 	public String getTurno() {
 		return turno;
 	}
 
-
-
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
 
-
-
 	public String getResponsableRecepcion() {
 		return responsableRecepcion;
 	}
-
-
 
 	public void setResponsableRecepcion(String responsableRecepcion) {
 		this.responsableRecepcion = responsableRecepcion;
@@ -87,8 +72,6 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 		return nombreRemitente;
 	}
 
-
-
 	public void setNombreRemitente(String nombreRemitente) {
 		this.nombreRemitente = nombreRemitente;
 	}
@@ -97,19 +80,13 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 		return fechaRecepcion;
 	}
 
-
-
 	public void setFechaRecepcion(Date fechaRecepcion) {
 		this.fechaRecepcion = fechaRecepcion;
 	}
 
-
-
 	public byte[] getDocumento() {
 		return documento;
 	}
-
-
 
 	public void setDocumento(byte[] documento) {
 		this.documento = documento;
@@ -119,8 +96,6 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 		return fechaTurnado;
 	}
 
-
-
 	public void setFechaTurnado(Date fechaTurnado) {
 		this.fechaTurnado = fechaTurnado;
 	}
@@ -129,27 +104,16 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 		return tipoDocumento;
 	}
 
-
-
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-
-
 
 	public String getNombreDocumento() {
 		return nombreDocumento;
 	}
 
-
-
 	public void setNombreDocumento(String nombreDocumento) {
 		this.nombreDocumento = nombreDocumento;
 	}
 
-
-
-	
-
-	
 }
