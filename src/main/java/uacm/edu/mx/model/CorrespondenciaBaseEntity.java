@@ -20,37 +20,17 @@ public class CorrespondenciaBaseEntity {
 	@Id
 	@Column(name="referencia_documento")
 	private String referenciaDocumento; 
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_tipo_documento",referencedColumnName = "id")
-	private TipoDocumento idTipoDocumento;
-	
+		
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	@Column(name="fecha_documento")
 	private Date fechaDocumento;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_medio",referencedColumnName = "id")
-	private Medio idMedio;
-	
 	@Column(name="asunto")
 	private String asunto;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_area_recibe",referencedColumnName = "id")
-	private Area idAreaRecibe;
-	
 	@Column(name="nombre_destinatario")
 	private String nombreDestinatario;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_cargo_destinatario",referencedColumnName = "id")
-	private Cargo idCargoDestinatario;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_prioridad",referencedColumnName = "id")
-	private Prioridad idPrioridad;
 	
 	@Column(name="existe_anexo")
 	private Integer existeAnexo;
@@ -71,16 +51,9 @@ public class CorrespondenciaBaseEntity {
 	@Column(name="fecha_requerida_respuesta",nullable = false)
 	private Date fechaRequeridaRespuesta;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_instruccion",referencedColumnName = "id")
-	private Instruccion idInstruccion; 
-	
+		
 	@Column(name="instrucciones_adicionales")
 	private String instruccionesAdicionales;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_estatus",referencedColumnName = "id")
-	private Estatus idEstatus;
 	
 	@Column(name="solucion")
 	private String solucion;
@@ -102,14 +75,6 @@ public class CorrespondenciaBaseEntity {
 		this.referenciaDocumento = referenciaDocumento;
 	}
 
-	public TipoDocumento getIdTipoDocumento() {
-		return idTipoDocumento;
-	}
-
-	public void setIdTipoDocumento(TipoDocumento idTipoDocumento) {
-		this.idTipoDocumento = idTipoDocumento;
-	}
-
 	public Date getFechaDocumento() {
 		return fechaDocumento;
 	}
@@ -117,15 +82,6 @@ public class CorrespondenciaBaseEntity {
 	public void setFechaDocumento(Date fechaDocumento) {
 		this.fechaDocumento = fechaDocumento;
 	}
-
-	public Medio getIdMedio() {
-		return idMedio;
-	}
-
-	public void setIdMedio(Medio idMedio) {
-		this.idMedio = idMedio;
-	}
-
 	public String getAsunto() {
 		return asunto;
 	}
@@ -134,36 +90,12 @@ public class CorrespondenciaBaseEntity {
 		this.asunto = asunto;
 	}
 
-	public Area getIdAreaRecibe() {
-		return idAreaRecibe;
-	}
-
-	public void setIdAreaRecibe(Area idAreaRecibe) {
-		this.idAreaRecibe = idAreaRecibe;
-	}
-
 	public String getNombreDestinatario() {
 		return nombreDestinatario;
 	}
 
 	public void setNombreDestinatario(String nombreDestinatario) {
 		this.nombreDestinatario = nombreDestinatario;
-	}
-
-	public Cargo getIdCargoDestinatario() {
-		return idCargoDestinatario;
-	}
-
-	public void setIdCargoDestinatario(Cargo idCargoDestinatario) {
-		this.idCargoDestinatario = idCargoDestinatario;
-	}
-
-	public Prioridad getIdPrioridad() {
-		return idPrioridad;
-	}
-
-	public void setIdPrioridad(Prioridad idPrioridad) {
-		this.idPrioridad = idPrioridad;
 	}
 
 	public Integer getExisteAnexo() {
@@ -207,28 +139,12 @@ public class CorrespondenciaBaseEntity {
 		this.fechaRequeridaRespuesta = fechaRequeridaRespuesta;
 	}
 
-	public Instruccion getIdInstruccion() {
-		return idInstruccion;
-	}
-
-	public void setIdInstruccion(Instruccion idInstruccion) {
-		this.idInstruccion = idInstruccion;
-	}
-
 	public String getInstruccionesAdicionales() {
 		return instruccionesAdicionales;
 	}
 
 	public void setInstruccionesAdicionales(String instruccionesAdicionales) {
 		this.instruccionesAdicionales = instruccionesAdicionales;
-	}
-
-	public Estatus getIdEstatus() {
-		return idEstatus;
-	}
-
-	public void setIdEstatus(Estatus idEstatus) {
-		this.idEstatus = idEstatus;
 	}
 
 	public String getSolucion() {

@@ -28,16 +28,8 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 	@Column(name="responsable_recepcion")
 	private String responsableRecepcion;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_area_envia",referencedColumnName = "id")
-	private Area idAreaEnvia;
-	
 	@Column(name="nombre_remitente")
 	private String nombreRemitente;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_cargo_remitente",referencedColumnName = "id")
-	private Cargo idCargoRemitente;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
@@ -47,10 +39,6 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 	@Lob
 	@Type(type="org.hibernate.type.BinaryType")
 	private byte[] documento;
-
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_turnado_a",referencedColumnName = "id")
-	private Persona idTurnadoA;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
@@ -95,20 +83,6 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 		this.responsableRecepcion = responsableRecepcion;
 	}
 
-
-
-	public Area getIdAreaEnvia() {
-		return idAreaEnvia;
-	}
-
-
-
-	public void setIdAreaEnvia(Area idAreaEnvia) {
-		this.idAreaEnvia = idAreaEnvia;
-	}
-
-
-
 	public String getNombreRemitente() {
 		return nombreRemitente;
 	}
@@ -118,20 +92,6 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 	public void setNombreRemitente(String nombreRemitente) {
 		this.nombreRemitente = nombreRemitente;
 	}
-
-
-
-	public Cargo getIdCargoRemitente() {
-		return idCargoRemitente;
-	}
-
-
-
-	public void setIdCargoRemitente(Cargo idCargoRemitente) {
-		this.idCargoRemitente = idCargoRemitente;
-	}
-
-
 
 	public Date getFechaRecepcion() {
 		return fechaRecepcion;
@@ -154,20 +114,6 @@ public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
 	public void setDocumento(byte[] documento) {
 		this.documento = documento;
 	}
-
-
-
-	public Persona getIdTurnadoA() {
-		return idTurnadoA;
-	}
-
-
-
-	public void setIdTurnadoA(Persona idTurnadoA) {
-		this.idTurnadoA = idTurnadoA;
-	}
-
-
 
 	public Date getFechaTurnado() {
 		return fechaTurnado;

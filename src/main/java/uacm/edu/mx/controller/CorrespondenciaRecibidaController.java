@@ -21,63 +21,29 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
-import uacm.edu.mx.model.Estatus;
-import uacm.edu.mx.model.Area;
-import uacm.edu.mx.model.Prioridad;
-import uacm.edu.mx.service.AnexoService;
-import uacm.edu.mx.service.AreaService;
-import uacm.edu.mx.service.CargoService;
 import uacm.edu.mx.service.CorrespondenciaRecibidaService;
-import uacm.edu.mx.service.EstatusService;
 import uacm.edu.mx.service.ExpedienteService;
 import uacm.edu.mx.service.GenerateExcelFileCorrRecPorFechaRecepService;
-import uacm.edu.mx.service.InstruccionService;
-import uacm.edu.mx.service.MedioService;
-import uacm.edu.mx.service.PersonaService;
-import uacm.edu.mx.service.PrioridadService;
-import uacm.edu.mx.service.TipoDocumentoService;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/recibida")
 public class CorrespondenciaRecibidaController {
 
 	private final Logger logger = LoggerFactory.getLogger(CorrespondenciaRecibidaController.class);
-
-	private final TipoDocumentoService tipoDocumentoService;
-	private final AreaService areaService;
-	private final CargoService cargoService;
-	private final MedioService medioService;
-	private final PrioridadService prioridadService;
-	private final PersonaService personaService;
-	private final InstruccionService instruccionService;
-	private final EstatusService estatusService;
 	private final ExpedienteService expedienteService;
 	private final CorrespondenciaRecibidaService corrRecService;
 	private final GenerateExcelFileCorrRecPorFechaRecepService genFileCorrRecFechRecepService;
 
 	@Autowired
-	public CorrespondenciaRecibidaController(final TipoDocumentoService tipoDocumentoService,
-			final AreaService areaService, final CargoService cargoService, final MedioService medioService,
-			final PrioridadService prioridadService, final PersonaService personaService,
-			final InstruccionService instruccionService, final EstatusService estatusService,
+	public CorrespondenciaRecibidaController(
 			final ExpedienteService expedienteService, final CorrespondenciaRecibidaService corrRecService,
 			final GenerateExcelFileCorrRecPorFechaRecepService genFileCorrRecFechRecepService) {
-		this.tipoDocumentoService = tipoDocumentoService;
-		this.areaService = areaService;
-		this.cargoService = cargoService;
-		this.medioService = medioService;
-		this.prioridadService = prioridadService;
-		this.personaService = personaService;
-		this.instruccionService = instruccionService;
-		this.estatusService = estatusService;
 		this.expedienteService = expedienteService;
 		this.corrRecService = corrRecService;
 		this.genFileCorrRecFechRecepService = genFileCorrRecFechRecepService;
@@ -395,40 +361,6 @@ public class CorrespondenciaRecibidaController {
 
 		return "correspondenciaRecibida/modificarCorrRecibida";
 
-	}
-
-	@ModelAttribute
-	public void setListas(Model model) {
-
-		model.addAttribute("listaTipoDocumentos", tipoDocumentoService.buscarTodos());
-		model.addAttribute("listaAreas", areaService.buscarTodos());
-		model.addAttribute("listaCargos", cargoService.buscarTodos());
-		model.addAttribute("listaMedios", medioService.buscarTodos());
-		model.addAttribute("listaPrioridades", prioridadService.buscarTodos());
-		model.addAttribute("listaPersonas", personaService.buscarTodos());
-		model.addAttribute("listaInstrucciones", instruccionService.buscarTodos());
-		model.addAttribute("listaEstatus", estatusService.buscarTodos());
-		model.addAttribute("listaExpedientes", expedienteService.buscarTodos());
-
-	}
-
-	@ModelAttribute
-	public void listCatalogos(Model model) {
-		model.addAttribute("correspondenciaRecibida", new CorrespondenciaRecibida());
-		Area areaForm = new Area();
-		model.addAttribute("area", areaForm);
-		List<Area> listArea = areaService.buscarTodos();
-		model.addAttribute("listaAreas", listArea);
-
-		Estatus estadoForm = new Estatus();
-		model.addAttribute("estado", estadoForm);
-		List<Estatus> listEstatus = estatusService.buscarTodos();
-		model.addAttribute("listaEstatus", listEstatus);
-
-		Prioridad prioridadForm = new Prioridad();
-		model.addAttribute("prioridad", prioridadForm);
-		List<Prioridad> listPrioridad = prioridadService.buscarTodos();
-		model.addAttribute("listaPrioridades", listPrioridad);
 	}
 
 	@InitBinder
