@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="row">
+
+		<div class="col-sm-12">
+			<form th:action="@{/recibida/file}"
+				th:object="${correspondenciaRecibida}" method="post">
+
+				<div class="item form-group row ">
+					<label class="col-form-label col-md-3 col-sm-3 label-align">Referencia:
+						<span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 ">
+						<input th:type="text" id="referencia" name="referencia"
+							required="required" class="form-control"
+							onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+					</div>
+				</div>
+
+				<div class="ln_solid"></div>
+				<div class="item form-group">
+					<div class="col-md-6 col-sm-6 offset-md-3">
+						<button class="btn btn-primary" type="button">Cancelar</button>
+						<button class="btn btn-primary" type="reset">Borrar</button>
+						<button type="submit" class="btn btn-success">Buscar</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		
+		
+
+
+	</div>
+
+</body>
+</html>

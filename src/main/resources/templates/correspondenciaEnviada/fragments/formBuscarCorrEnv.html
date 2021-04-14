@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<form th:action="@{/enviada/guardar}"
+		th:object="${correspondenciaEnviada}" method="post">
+
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Referencia
+				Documento: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:field="*{referenciaDocumento}" id="referenciaDocumento"
+					name="referenciaDocumento" title="Referencia" required="required"
+					class="form-control"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Tipo
+				de documento: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idTipoDocumento.id}" id="idTipoDocumento"
+					name="idTipoDocumento" class="form-control"
+					title="Tipo de Documento" data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:each="idTipoDocumento : ${listaTipoDocumentos}"
+						th:value="${idTipoDocumento.id}"
+						th:utext="${idTipoDocumento.nombre}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Área
+				que recibe: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idAreaRecibe.id}" id="idAreaRecibe"
+					name="idAreaRecibe" class="form-control" title="Área que recbe"
+					data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:each="idAreaRecibe : ${listaAreas}"
+						th:value="${idAreaRecibe.id}" th:utext="${idAreaRecibe.nombre}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Nombre
+				del destinatario: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{nombreDestinatario}"
+					id="nombreDestinatario" name="nombreDestinatario"
+					class="form-control" required="required"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Cargo
+				del destinatario: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idCargoDestinatario.id}"
+					id="idCargoDestinatario" name="idCargoDestinatario"
+					class="form-control" title="Cargo del remitente" data-size="7"
+					required="required">
+					<option value="0">--</option>
+					<option th:each="idCargoDestinatario : ${listaCargos}"
+						th:value="${idCargoDestinatario.id}"
+						th:utext="${idCargoDestinatario.nombre}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha
+				de documento: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="date" th:field="*{fechaDocumento}"
+					id="fechaDocumento" name="fechaDocumento"
+					class="date-picker form-control" required="required" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Asunto:
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{asunto}" id="asunto" name="asunto"
+					class="form-control"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Respuesta
+				a turno: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{respuestaTurno}"
+					id="respuestaTurno" name="respuestaTurno" class="form-control"
+					required="required"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Persona
+				Tramitadora: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idPersonaTramitadora.id}"
+					id="idPersonaTramitadora" name="idPersonaTramitadora"
+					class="form-control" title="Persona Tramitadora" data-size="7"
+					required="required">
+					<option value="0">--</option>
+					<option th:each="idPersonaTramitadora : ${listaAreas}"
+						th:value="${idPersonaTramitadora.id}"
+						th:utext="${idPersonaTramitadora.nombre}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha
+				de envío: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="date" th:field="*{fechaEnvio}" id="fechaEnvio"
+					name="fechaEnvio" class="date-picker form-control"
+					required="required" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Medio:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<select th:field="*{idMedio.id}" id="idMedio" name="idMedio"
+					class="form-control" title="Medio" data-size="7"
+					required="required">
+					<option value="0">--</option>
+					<option th:each="idMedio : ${listaMedios}" th:value="${idMedio.id}"
+						th:utext="${idMedio.nombre}" />
+				</select>
+			</div>
+		</div>
+
+
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Prioridad:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idPrioridad.id}" id="idPrioridad"
+					name="idPrioridad" class="form-control" title="Prioridad"
+					data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:each="idPrioridad : ${listaPrioridades}"
+						th:value="${idPrioridad.id}" th:utext="${idPrioridad.nombre}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Tiene
+				anexos?: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{existeAnexo}" id="existeAnexo"
+					name="idPrioridad" class="form-control" title="Tiene anexos"
+					data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:value="'1'" th:text="Si"></option>
+					<option th:value="'2'" th:text="No"></option>
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Número
+				de anexos: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{numeroAnexos}" id="numeroAnexos"
+					name="numeroAnexos" class="form-control" title="Número de anexos"
+					data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:each="i : ${#numbers.sequence(0, 100)}" th:value="${i}"
+						th:text="${i}"></option>
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Tipo
+				de anexo: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idTipoAnexo.id}" id="idTipoAnexo"
+					name="idTipoAnexo" class="form-control" title="Tipo de anexo"
+					data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:each="idTipoAnexo : ${listaAnexos}"
+						th:value="${idTipoAnexo.id}" th:utext="${idTipoAnexo.nombre}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Ubicación
+				de anexo: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{ubicacionAnexo}"
+					id="ubicacionAnexo" name="ubicacionAnexo" class="form-control"
+					required="required"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="item form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha
+				requerida de respuesta: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="date" th:field="*{fechaRequeridaRespuesta}"
+					id="fechaRequeridaRespuesta" name="fechaRequeridaRespuesta"
+					class="date-picker form-control" required="required" />
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Instrucción:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<select th:field="*{idInstruccion.id}" id="idInstruccion"
+					name="idInstruccion" class="form-control" title="Instrucción"
+					data-size="7">
+					<option value="0">--</option>
+					<option th:each="idInstruccion: ${listaInstrucciones}"
+						th:value="${idInstruccion.id}" th:utext="${idInstruccion.nombre}" />
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Instrucciones
+				adicionales:</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{instruccionesAdicionales}"
+					id="instruccionesAdicionales" name="instruccionesAdicionales"
+					class="form-control"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Estatus:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<select th:field="*{idEstatus.id}" id="idEstatus" name="idEstatus"
+					class="form-control" title="Estatus" data-size="7">
+					<option value="0">--</option>
+					<option th:each="idEstatus: ${listaEstatus}"
+						th:value="${idEstatus.id}" th:utext="${idEstatus.nombre}" />
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Solución:</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{solucion}" id="solucion"
+					name="solucion" class="form-control"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="item form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha
+				de solucion: <span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="date" th:field="*{fechaSolucion}" id="fechaSolucion"
+					name="fechaSolucion" class="date-picker form-control"
+					required="required" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Expediente:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 ">
+				<select th:field="*{idExpediente.idExpediente}" id="idExpediente"
+					name="idExpediente" class="form-control" title="Expediente"
+					data-size="7" required="required">
+					<option value="0">--</option>
+					<option th:each="idExpediente : ${listaExpedientes}"
+						th:value="${idExpediente.idExpediente}"
+						th:utext="${idExpediente.nombreExpediente}" />
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Solución:
+			</label>
+			<div class="col-md-9 col-sm-9">
+				<input th:type="text" th:field="*{solucion}" id="solucion"
+					name="solucion" class="form-control"
+					onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+			</div>
+		</div>
+		<div class="item form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha
+				de solución: </label>
+			<div class="col-md-9 col-sm-9 ">
+				<input th:type="date" th:field="*{fechaSolucion}"
+					id="fechaSoluciono" name="fechaSolucion"
+					class="date-picker form-control" />
+			</div>
+		</div>
+
+		<div class="ln_solid"></div>
+		<div class="item form-group">
+			<div class="col-md-6 col-sm-6 offset-md-3">
+				<button class="btn btn-primary" type="button">Cancelar</button>
+				<button class="btn btn-primary" type="reset">Borrar</button>
+				<button type="submit" class="btn btn-success">Guardar</button>
+			</div>
+		</div>
+
+	</form>
+
+</body>
+</html>
