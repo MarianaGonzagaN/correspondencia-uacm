@@ -1,4 +1,4 @@
-package uacm.edu.mx.service;
+package uacm.edu.mx.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import uacm.edu.mx.model.Fondo;
 import uacm.edu.mx.repository.FondoRepository;
+import uacm.edu.mx.service.FondoService;
 
 @Service
 public class FondoServiceImpl implements FondoService {

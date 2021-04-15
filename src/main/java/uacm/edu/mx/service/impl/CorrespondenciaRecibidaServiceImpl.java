@@ -1,4 +1,4 @@
-package uacm.edu.mx.service;
+package uacm.edu.mx.service.impl;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 import uacm.edu.mx.model.Expediente;
 import uacm.edu.mx.repository.CorrespondeciaRecibidaRepository;
+import uacm.edu.mx.service.CorrespondenciaRecibidaService;
 
 @Service
 public class CorrespondenciaRecibidaServiceImpl implements CorrespondenciaRecibidaService{
@@ -67,19 +68,22 @@ public class CorrespondenciaRecibidaServiceImpl implements CorrespondenciaRecibi
 	public List<CorrespondenciaRecibida> buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart,
 			Date fechaRecepcionEnd, Integer areaId) {
 
-		return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd,areaId);
+		//return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd,areaId);
+		return null;
 	}
 
 	@Override
 	public List<CorrespondenciaRecibida> buscarPorEstatus(Integer estatusId) {
 		// TODO Auto-generated method stub
-		return corrRecRepository.findByEstatus(estatusId);
+		//return corrRecRepository.findByEstatus(estatusId);
+		return null;
 	}
 
 	@Override
 	public List<CorrespondenciaRecibida> buscarPorPrioridad(Integer prioridadId) {
 		// TODO Auto-generated method stub
-		return corrRecRepository.findByPrioridad(prioridadId);
+		//return corrRecRepository.findByPrioridad(prioridadId);
+		return null;
 	}
 
 	@Override

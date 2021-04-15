@@ -1,4 +1,4 @@
-package uacm.edu.mx.service;
+package uacm.edu.mx.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import uacm.edu.mx.model.CorrespondenciaEnviada;
 import uacm.edu.mx.repository.CorrespondeciaEnviadaRepository;
+import uacm.edu.mx.service.CorrespondenciaEnviadaService;
 
 
 @Service
@@ -47,19 +48,21 @@ public class CorrespondenciaEnviadaServiceImpl implements CorrespondenciaEnviada
 	public List<CorrespondenciaEnviada> buscarPorFechaEnvioAndAreaRecibe(Date fechaEnvioStart, Date fechaEnvioEnd,
 			Integer areaId) {
 		// TODO Auto-generated method stub
-		return corrEnvRepository.findByFechaEnvioAndAreaRecibe(fechaEnvioStart, fechaEnvioEnd, areaId);
+		//return corrEnvRepository.findByFechaEnvioAndAreaRecibe(fechaEnvioStart, fechaEnvioEnd, areaId);
+		return null;
 	}
 
 	@Override
 	public List<CorrespondenciaEnviada> buscarPorEstatus(Integer estatusId) {
 		// TODO Auto-generated method stub
-		return corrEnvRepository.findByEstatus(estatusId);
+		return null;
 	}
 
 	@Override
 	public List<CorrespondenciaEnviada> buscarPorPrioridad(Integer prioridadId) {
 		// TODO Auto-generated method stub
-		return corrEnvRepository.findByPrioridad(prioridadId);
+		//return corrEnvRepository.findByPrioridad(prioridadId);
+		return null;
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
-public class CorrespondenciaBaseEntity {
+public class Correspondencia {
 	
 	@Id
 	@Column(name="referencia_documento")

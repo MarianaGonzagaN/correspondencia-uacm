@@ -1,4 +1,4 @@
-package uacm.edu.mx.service;
+package uacm.edu.mx.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uacm.edu.mx.model.Expediente;
 import uacm.edu.mx.repository.ExpedienteRepository;
+import uacm.edu.mx.service.ExpedienteService;
 
 @Service
 public class ExpedienteServiceImpl implements ExpedienteService {

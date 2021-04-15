@@ -1,4 +1,4 @@
-package uacm.edu.mx.service;
+package uacm.edu.mx.service.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import uacm.edu.mx.model.CorrespondenciaRecibida;
+import uacm.edu.mx.service.GenerateExcelFileCorrRecPorFechaRecepService;
 
 
 @Service

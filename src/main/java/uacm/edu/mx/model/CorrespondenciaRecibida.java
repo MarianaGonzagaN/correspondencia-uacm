@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "correspondencia_recibida")
-public class CorrespondenciaRecibida extends CorrespondenciaBaseEntity {
+public class CorrespondenciaRecibida extends Correspondencia {
 
 	@Column(name = "turno", nullable = false)
 	private String turno;
