@@ -2,20 +2,24 @@ package uacm.edu.mx.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Catalogo_valores", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "catalogo_id", "valor_nombre" }, name = "valor_nombre_duplicado") })
+@Table(name = "Catalogo_valores")
 public class CatalogoValores {
 
 	@Id
@@ -27,9 +31,11 @@ public class CatalogoValores {
 
 	@Column(name = "descripcion")
 	private String descripcion;
-
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "catalogo_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Catalogo catalogo;
 
 	public CatalogoValores() {

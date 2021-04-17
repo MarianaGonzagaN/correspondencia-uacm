@@ -5,11 +5,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class CatalogoException extends RuntimeException{
+	
+    public CatalogoException() {
+        super();
+    }
 
-	private static final long serialVersionUID = 1L;
+    public CatalogoException(String message) {
+        super(message);
+    }
 
-	public CatalogoException() {
-		super();
-	}
+    public CatalogoException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

@@ -1,6 +1,6 @@
 package uacm.edu.mx.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,15 +27,9 @@ public class Catalogo {
     @Column(name = "catalogo_nombre", length = 100)
     private String nombre;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "catalogo", orphanRemoval = true)
-    private List<CatalogoValores> valores;
-
 	public Catalogo() {
 		super();
 	}
-	
-	public void addValor(CatalogoValores valor) {
-		valores.add(valor);
-	}
+
 
 }

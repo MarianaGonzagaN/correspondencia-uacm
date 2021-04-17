@@ -12,11 +12,18 @@ import uacm.edu.mx.data.CatalogoValorRequest;
 public interface ICatalogoService {
 
 	public CatalogoResponse createCatalogo(CatalogoRequest catalogoRequest);
-	public CatalogoResponse update(CatalogoRequest catalogoRequest);
+
+	public CatalogoResponse update(CatalogoRequest catalogoRequest, Long catalogo_id);
+
 	public void delete(Long id);
+
 	public CatalogoResponse getCatalogo(Long id);
+
 	public List<CatalogoResponse> getAllCatalogo();
+
 	public CatalogoResponse addValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_id);
-	public CatalogoResponse updateValorCatalogo(CatalogoValorRequest catalogoValorRequest);
+
+	public CatalogoResponse updateValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_valor_id);
+
 	public void deleteValorCatalogo(Long id);
 }
