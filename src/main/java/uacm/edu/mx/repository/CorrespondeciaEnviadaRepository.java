@@ -16,16 +16,24 @@ public interface CorrespondeciaEnviadaRepository extends JpaRepository<Correspon
 
 	List<CorrespondenciaEnviada> findAllByFechaEnvioBetween(Date fechaRecepcionStart, Date fechaRecepcionEnd);
 
-	@Query("SELECT c FROM CorrespondenciaEnviada c where c.idAreaRecibe.id=:idAreaRecibe and  c.fechaEnvio BETWEEN :fechaEnvioStart AND :fechaEnvioEnd")
-	List<CorrespondenciaEnviada> findByFechaEnvioAndAreaRecibe(@Param("fechaEnvioStart") Date fechaEnvioStart,
-			@Param("fechaEnvioEnd") Date fechaEnvioEnd, @Param("idAreaRecibe") Integer idAreaRecibe);
-
-	@Query("SELECT c FROM CorrespondenciaEnviada c where c.idEstatus.id=:idEstatus")
-	List<CorrespondenciaEnviada> findByEstatus(@Param("idEstatus") Integer idEstatus);
-
-	@Query("SELECT c FROM CorrespondenciaEnviada c where c.idPrioridad.id=:idPrioridad")
-	List<CorrespondenciaEnviada> findByPrioridad(@Param("idPrioridad") Integer idPrioridad);
-
+	/*
+	 * @Query("SELECT c FROM CorrespondenciaEnviada c where c.idAreaRecibe.id=:idAreaRecibe and  c.fechaEnvio BETWEEN :fechaEnvioStart AND :fechaEnvioEnd"
+	 * ) List<CorrespondenciaEnviada>
+	 * findByFechaEnvioAndAreaRecibe(@Param("fechaEnvioStart") Date fechaEnvioStart,
+	 * 
+	 * @Param("fechaEnvioEnd") Date fechaEnvioEnd, @Param("idAreaRecibe") Integer
+	 * idAreaRecibe);
+	 */
+	
+	/*
+	 * @Query("SELECT c FROM CorrespondenciaEnviada c where c.idEstatus.id=:idEstatus"
+	 * ) List<CorrespondenciaEnviada> findByEstatus(@Param("idEstatus") Integer
+	 * idEstatus);
+	 * 
+	 * @Query("SELECT c FROM CorrespondenciaEnviada c where c.idPrioridad.id=:idPrioridad"
+	 * ) List<CorrespondenciaEnviada> findByPrioridad(@Param("idPrioridad") Integer
+	 * idPrioridad);
+	 */
 	@Query("SELECT c FROM CorrespondenciaRecibida c where c.fechaRequeridaRespuesta BETWEEN :fechaReqIni AND :fechaReqFin")
 	Collection<CorrespondenciaEnviada> findByfechaRequeridaRespuesta(@Param("fechaReqIni") Date fechaReqIni,
 			@Param("fechaReqFin") Date fechaReqFin);

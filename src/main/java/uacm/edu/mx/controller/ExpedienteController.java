@@ -17,26 +17,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
-import uacm.edu.mx.model.CarpetaFisica;
 import uacm.edu.mx.model.Expediente;
-import uacm.edu.mx.model.Fondo;
-import uacm.edu.mx.model.Persona;
-import uacm.edu.mx.model.Seccion;
-import uacm.edu.mx.model.Serie;
-import uacm.edu.mx.model.SubSeccion;
-import uacm.edu.mx.model.SubSerie;
-import uacm.edu.mx.service.CarpetaFisicaService;
 import uacm.edu.mx.service.ExpedienteService;
 import uacm.edu.mx.service.FondoService;
-import uacm.edu.mx.service.PersonaService;
-import uacm.edu.mx.service.SeccionService;
-import uacm.edu.mx.service.SerieService;
-import uacm.edu.mx.service.SubSeccionService;
-import uacm.edu.mx.service.SubSerieService;
 
 
 @Controller
@@ -47,27 +31,12 @@ public class ExpedienteController {
 	
 	private final ExpedienteService expedienteService;
 	private final FondoService fondoService;
-	private final SeccionService seccionService;
-	private final SubSeccionService subSeccionService;
-	private final SerieService serieService;
-	private final SubSerieService subSerieService;
-	private final CarpetaFisicaService carpetaFisicaService;
-	private final PersonaService personaService;
 
 	
 	@Autowired
-	public ExpedienteController(final ExpedienteService expedienteService, final FondoService fondoService,
-			final SeccionService seccionService, final SubSeccionService subSeccionService,
-			final SerieService serieService, final SubSerieService subSerieService, final PersonaService personaService,
-			final CarpetaFisicaService carpetaFisicaService) {
+	public ExpedienteController(final ExpedienteService expedienteService, final FondoService fondoService) {
 		this.expedienteService = expedienteService;
 		this.fondoService = fondoService;
-		this.seccionService = seccionService;
-		this.subSeccionService = subSeccionService;
-		this.serieService = serieService;
-		this.subSerieService = subSerieService;
-		this.carpetaFisicaService = carpetaFisicaService;
-		this.personaService = personaService;
 	}
 
 
@@ -222,33 +191,6 @@ public class ExpedienteController {
 
 	}
 
-	@ModelAttribute
-	public void setListas(Model model) {
-
-		List<Fondo> listaFondos = fondoService.buscarTodos();
-		model.addAttribute("listFondos", listaFondos);
-
-		List<Seccion> listaSecciones = seccionService.buscarTodos();
-		model.addAttribute("listSecciones", listaSecciones);
-		
-		List<SubSeccion> listaSubSecciones = subSeccionService.buscarTodos();
-		model.addAttribute("listSubSecciones", listaSubSecciones);
-
-		List<Serie> listaSeries = serieService.buscarTodos();
-		model.addAttribute("listSeries", listaSeries);
-
-		List<SubSerie> listaSubSeries = subSerieService.buscarTodos();
-		model.addAttribute("listSubSeries", listaSubSeries);
-		
-		List<CarpetaFisica> listaCapetaFisica = carpetaFisicaService.buscarTodos();
-		model.addAttribute("listCarpetaFisica", listaCapetaFisica);
-		
-		/*
-		 * List<Persona> listaPersona = personaService.buscarTodos();
-		 * model.addAttribute("listPersona", listaPersona);
-		 */
-
-	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {

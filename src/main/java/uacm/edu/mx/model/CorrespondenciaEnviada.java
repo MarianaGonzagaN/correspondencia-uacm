@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="correspondencia_enviada")
-public class CorrespondenciaEnviada extends CorrespondenciaBaseEntity{
+public class CorrespondenciaEnviada extends Correspondencia{
 	
 	@Column(name="respuesta_turno")
 	private String respuestaTurno;
@@ -36,14 +36,6 @@ public class CorrespondenciaEnviada extends CorrespondenciaBaseEntity{
 	@Lob
 	@Type(type="org.hibernate.type.BinaryType")
 	private byte[] documentoRecibido;
-	
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_responsable_recepcion_acuse",referencedColumnName = "id")
-	private Persona idResponsableRecepcionAcuse;
-	
-
-
 
 	public CorrespondenciaEnviada() {
 		
@@ -88,17 +80,5 @@ public class CorrespondenciaEnviada extends CorrespondenciaBaseEntity{
 		this.documentoRecibido = documentoRecibido;
 	}
 
-
-	public Persona getIdResponsableRecepcionAcuse() {
-		return idResponsableRecepcionAcuse;
-	}
-
-
-	public void setIdResponsableRecepcionAcuse(Persona idResponsableRecepcionAcuse) {
-		this.idResponsableRecepcionAcuse = idResponsableRecepcionAcuse;
-	}
-	
-	
-	
 
 }

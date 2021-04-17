@@ -43,27 +43,7 @@ public class Expediente {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_fondo",referencedColumnName = "id")
 	private Fondo idFondo;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_seccion", referencedColumnName = "id")
-	private Seccion idSeccion; 
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_subseccion", referencedColumnName = "id")
-	private SubSeccion idSubSeccion; 
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_serie",referencedColumnName = "id")
-	private Serie idSerie; 
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_subserie",referencedColumnName = "id")
-	private SubSerie idSubSerie; 
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_carpeta_fisica",referencedColumnName = "id")
-	private SubSerie idCarpetaFisica; 
-	
+		
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "expediente")
 	private List<CorrespondenciaRecibida> corrRecibidas;
 	
@@ -107,46 +87,7 @@ public class Expediente {
 		this.idFondo = idFondo;
 	}
 
-	public Seccion getIdSeccion() {
-		return idSeccion;
-	}
-
-	public void setIdSeccion(Seccion idSeccion) {
-		this.idSeccion = idSeccion;
-	}
-
-	public SubSeccion getIdSubSeccion() {
-		return idSubSeccion;
-	}
-
-	public void setIdSubSeccion(SubSeccion idSubSeccion) {
-		this.idSubSeccion = idSubSeccion;
-	}
-
-	public Serie getIdSerie() {
-		return idSerie;
-	}
-
-	public void setIdSerie(Serie idSerie) {
-		this.idSerie = idSerie;
-	}
-
-	public SubSerie getIdSubSerie() {
-		return idSubSerie;
-	}
-
-	public void setIdSubSerie(SubSerie idSubSerie) {
-		this.idSubSerie = idSubSerie;
-	}
-
-	public SubSerie getIdCarpetaFisica() {
-		return idCarpetaFisica;
-	}
-
-	public void setIdCarpetaFisica(SubSerie idCarpetaFisica) {
-		this.idCarpetaFisica = idCarpetaFisica;
-	}
-
+	
 	public List<CorrespondenciaRecibida> getCorrRecibidas() {
 		return corrRecibidas;
 	}
