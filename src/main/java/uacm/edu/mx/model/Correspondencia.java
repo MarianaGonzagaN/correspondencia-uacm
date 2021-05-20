@@ -14,23 +14,48 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @MappedSuperclass
+@Getter 
+@Setter 
 public class Correspondencia {
 	
 	@Id
 	@Column(name="referencia_documento")
 	private String referenciaDocumento; 
-		
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_tipo_documento",referencedColumnName = "id")
+	private CatalogoValores idTipoDocumento;
+	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	@Column(name="fecha_documento")
 	private Date fechaDocumento;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_medio",referencedColumnName = "id")
+	private CatalogoValores idMedio;
+	
 	@Column(name="asunto")
 	private String asunto;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_area_recibe",referencedColumnName = "id")
+	private CatalogoValores idAreaRecibe;
+	
 	@Column(name="nombre_destinatario")
 	private String nombreDestinatario;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_cargo_destinatario",referencedColumnName = "id")
+	private CatalogoValores idCargoDestinatario;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_prioridad",referencedColumnName = "id")
+	private CatalogoValores idPrioridad;
 	
 	@Column(name="existe_anexo")
 	private Integer existeAnexo;
@@ -51,9 +76,16 @@ public class Correspondencia {
 	@Column(name="fecha_requerida_respuesta",nullable = false)
 	private Date fechaRequeridaRespuesta;
 	
-		
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_instruccion",referencedColumnName = "id")
+	private CatalogoValores idInstruccion; 
+	
 	@Column(name="instrucciones_adicionales")
 	private String instruccionesAdicionales;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_estatus",referencedColumnName = "id")
+	private CatalogoValores idEstatus;
 	
 	@Column(name="solucion")
 	private String solucion;
@@ -67,114 +99,6 @@ public class Correspondencia {
 	@JoinColumn(name="id_expediente",referencedColumnName = "id_expediente")
 	private Expediente expediente;
 
-	public String getReferenciaDocumento() {
-		return referenciaDocumento;
-	}
-
-	public void setReferenciaDocumento(String referenciaDocumento) {
-		this.referenciaDocumento = referenciaDocumento;
-	}
-
-	public Date getFechaDocumento() {
-		return fechaDocumento;
-	}
-
-	public void setFechaDocumento(Date fechaDocumento) {
-		this.fechaDocumento = fechaDocumento;
-	}
-	public String getAsunto() {
-		return asunto;
-	}
-
-	public void setAsunto(String asunto) {
-		this.asunto = asunto;
-	}
-
-	public String getNombreDestinatario() {
-		return nombreDestinatario;
-	}
-
-	public void setNombreDestinatario(String nombreDestinatario) {
-		this.nombreDestinatario = nombreDestinatario;
-	}
-
-	public Integer getExisteAnexo() {
-		return existeAnexo;
-	}
-
-	public void setExisteAnexo(Integer existeAnexo) {
-		this.existeAnexo = existeAnexo;
-	}
-
-	public Integer getNumeroAnexos() {
-		return numeroAnexos;
-	}
-
-	public void setNumeroAnexos(Integer numeroAnexos) {
-		this.numeroAnexos = numeroAnexos;
-	}
-	
-	public String getTipoAnexo() {
-		return tipoAnexo;
-	}
-
-	public void setTipoAnexo(String tipoAnexo) {
-		this.tipoAnexo = tipoAnexo;
-	}
-
-	public String getUbicacionAnexo() {
-		return ubicacionAnexo;
-	}
-
-	public void setUbicacionAnexo(String ubicacionAnexo) {
-		this.ubicacionAnexo = ubicacionAnexo;
-	}
-
-
-	public Date getFechaRequeridaRespuesta() {
-		return fechaRequeridaRespuesta;
-	}
-
-	public void setFechaRequeridaRespuesta(Date fechaRequeridaRespuesta) {
-		this.fechaRequeridaRespuesta = fechaRequeridaRespuesta;
-	}
-
-	public String getInstruccionesAdicionales() {
-		return instruccionesAdicionales;
-	}
-
-	public void setInstruccionesAdicionales(String instruccionesAdicionales) {
-		this.instruccionesAdicionales = instruccionesAdicionales;
-	}
-
-	public String getSolucion() {
-		return solucion;
-	}
-
-	public void setSolucion(String solucion) {
-		this.solucion = solucion;
-	}
-
-	public Date getFechaSolucion() {
-		return fechaSolucion;
-	}
-
-	public void setFechaSolucion(Date fechaSolucion) {
-		this.fechaSolucion = fechaSolucion;
-	}
-
-	public Expediente getExpediente() {
-		return expediente;
-	}
-
-	public void setExpediente(Expediente expediente) {
-		this.expediente = expediente;
-	}
-	
-	
-
-	
-	
 	
 	
 

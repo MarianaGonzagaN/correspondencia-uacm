@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uacm.edu.mx.model.CorrespondenciaEnviada;
-import uacm.edu.mx.service.CorrespondenciaEnviadaService;
+import uacm.edu.mx.service.ICorrespondenciaEnviadaService;
 import uacm.edu.mx.service.ExpedienteService;
 
 @Controller
@@ -28,11 +28,11 @@ public class CorrespondenciaEnviadaController {
 
 	private final Logger logger = LoggerFactory.getLogger(CorrespondenciaEnviadaController.class);
 	private final ExpedienteService expedienteService;
-	private final CorrespondenciaEnviadaService corrEnvService;
+	private final ICorrespondenciaEnviadaService corrEnvService;
 
 	@Autowired
 	public CorrespondenciaEnviadaController(final ExpedienteService expedienteService,
-			final CorrespondenciaEnviadaService corrEnvService) {
+			final ICorrespondenciaEnviadaService corrEnvService) {
 		this.expedienteService = expedienteService;
 		this.corrEnvService = corrEnvService;
 	}

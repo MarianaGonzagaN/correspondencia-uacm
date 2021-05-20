@@ -4,14 +4,16 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import uacm.edu.mx.data.RecibidaRequest;
+import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 
-public interface CorrespondenciaRecibidaService {
+public interface ICorrespondenciaRecibidaService {
 	
-	void insertar(CorrespondenciaRecibida correspondenciaRecibida);	
-	List<CorrespondenciaRecibida> buscarTodos();
-	CorrespondenciaRecibida buscarPorId(String referencia);
-    List<CorrespondenciaRecibida> buscarPorFechaRecepcion(Date fechaRecepcionStart, Date fechaRecepcionEnd);
+	public RecibidaResponse insertar(RecibidaRequest recibidaRequest);
+	public RecibidaResponse buscarPorId(String referencia);
+	public List<RecibidaResponse> buscarTodas();
+    public List<RecibidaResponse> buscarPorFechaRecepcion(Date fechaRecepcionStart, Date fechaRecepcionEnd);
     List<CorrespondenciaRecibida> buscarPorFechaRecepcionAndAreaEnvia (Date fechaRecepcionStart, Date fechaRecepcionEnd, Integer areaId);
     List<CorrespondenciaRecibida> buscarPorEstatus (Integer estatusId);
     List<CorrespondenciaRecibida> buscarPorPrioridad (Integer prioridadId);

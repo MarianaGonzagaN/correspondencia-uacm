@@ -3,11 +3,12 @@ package uacm.edu.mx.service;
 import java.util.Date;
 import java.util.List;
 
+import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaEnviada;
 
-public interface CorrespondenciaEnviadaService {
+public interface ICorrespondenciaEnviadaService {
 	
-	void insertar(CorrespondenciaEnviada correspondenciaEnviada);	
+	public RecibidaResponse insertar(CorrespondenciaEnviada correspondenciaEnviada);	
 	List<CorrespondenciaEnviada> buscarTodos();
 	CorrespondenciaEnviada buscarPorId(String referencia);
     List<CorrespondenciaEnviada> buscarPorFechaEnvio(Date fechaEnvioStart, Date fechaEnvioEnd);

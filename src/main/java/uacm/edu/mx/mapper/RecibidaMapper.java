@@ -1,6 +1,7 @@
 package uacm.edu.mx.mapper;
 
 import uacm.edu.mx.data.RecibidaRequest;
+import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 
 public class RecibidaMapper {
@@ -27,5 +28,27 @@ public class RecibidaMapper {
 		
 		return correspondenciaRecibida;
 	}
+	
+	
+	
+	public CorrespondenciaRecibida dataToEntity(RecibidaRequest recibidaRequest) {
+		CorrespondenciaRecibida corrRec = new CorrespondenciaRecibida();
+		corrRec.setTurno(recibidaRequest.getTurno());
+		return corrRec;
+	}
+	
+	
+	public RecibidaResponse EntityToData(CorrespondenciaRecibida corrRec) {
+
+		RecibidaResponse recibidaResponse = new RecibidaResponse(null, null);
+		
+		recibidaResponse.setReferencia(corrRec.getReferenciaDocumento());
+		recibidaResponse.setFechaRecepcion(corrRec.getFechaRecepcion());
+		return recibidaResponse;
+	}
+	
+	
+	
+		
 
 }

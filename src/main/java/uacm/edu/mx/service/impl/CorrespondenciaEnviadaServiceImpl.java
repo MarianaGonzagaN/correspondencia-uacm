@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import uacm.edu.mx.model.CorrespondenciaEnviada;
 import uacm.edu.mx.repository.CorrespondeciaEnviadaRepository;
-import uacm.edu.mx.service.CorrespondenciaEnviadaService;
+import uacm.edu.mx.service.ICorrespondenciaEnviadaService;
 
 
 @Service
-public class CorrespondenciaEnviadaServiceImpl implements CorrespondenciaEnviadaService{
+public class CorrespondenciaEnviadaServiceImpl implements ICorrespondenciaEnviadaService{
 	
 	@Autowired
 	private CorrespondeciaEnviadaRepository corrEnvRepository;

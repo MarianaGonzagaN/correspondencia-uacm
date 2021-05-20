@@ -19,16 +19,20 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name="expediente")
+@Getter 
+@Setter
+@NoArgsConstructor
 public class Expediente {
 	
 	@Id
-	@SequenceGenerator(name="expediente_id_expediente_seq",
-    sequenceName="expediente_id_expediente_seq",
-    allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="expediente_id_expediente_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_expediente")
 	private int idExpediente; 
 	
@@ -49,61 +53,6 @@ public class Expediente {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "expediente")
 	private List<CorrespondenciaEnviada> corrEnviadas;
-	
-
-	public Expediente() {
-		
-	}
-
-	public int getIdExpediente() {
-		return idExpediente;
-	}
-
-	public void setIdExpediente(int idExpediente) {
-		this.idExpediente = idExpediente;
-	}
-
-	public Date getFechaApertura() {
-		return fechaApertura;
-	}
-
-	public void setFechaApertura(Date fechaApertura) {
-		this.fechaApertura = fechaApertura;
-	}
-
-	public String getNombreExpediente() {
-		return nombreExpediente;
-	}
-
-	public void setNombreExpediente(String nombreExpediente) {
-		this.nombreExpediente = nombreExpediente;
-	}
-
-	public Fondo getIdFondo() {
-		return idFondo;
-	}
-
-	public void setIdFondo(Fondo idFondo) {
-		this.idFondo = idFondo;
-	}
-
-	
-	public List<CorrespondenciaRecibida> getCorrRecibidas() {
-		return corrRecibidas;
-	}
-
-	public void setCorrRecibidas(List<CorrespondenciaRecibida> corrRecibidas) {
-		this.corrRecibidas = corrRecibidas;
-	}
-
-	public List<CorrespondenciaEnviada> getCorrEnviada() {
-		return corrEnviadas;
-	}
-
-	public void setCorrEnviada(List<CorrespondenciaEnviada> corrEnviada) {
-		this.corrEnviadas = corrEnviada;
-	}
-	
 	
 
 }
