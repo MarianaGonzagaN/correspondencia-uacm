@@ -58,11 +58,6 @@ public class CorrespondenciaRecibidaController {
 		this.corrRecService = corrRecService;
 	}
 	
-	@PostMapping
-	public ResponseEntity<RecibidaResponse> createUser(@RequestBody final RecibidaRequest corrRec){
-		
-		return null;
-	}
 
 	/*add
 	 * @GetMapping private String getCorrRec(@ModelAttribute CorrespondenciaRecibida

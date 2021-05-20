@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="col-md-12 col-sm-12 ">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					Pendientes de solución<small></small>
+				</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i
+							class="fas fa-chevron-up fa-2x"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+				<br>
+			</div>
+			<div class="x_content">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card-box table-responsive">
+							<p class="text-muted font-13 m-b-30"></p>
+							<table id="datatable-buttons"
+								class="table table-striped table-bordered" style="width: 100%">
+								<thead>
+									<tr>
+										<th>Turno</th>
+										<th>Referencia Documento</th>
+										<th>Asunto</th>
+										<th>Vigencia</th>
+								</thead>
+
+
+								<tbody>
+									<tr th:each="PendSol : ${PendSol}">
+										<td th:text="${PendSol.turno}"></td>
+										<td th:text="${PendSol.referenciaDocumento}"></td>
+										<td th:text="${PendSol.asunto}"></td>
+										<td th:text="${PendSol.vigencia}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

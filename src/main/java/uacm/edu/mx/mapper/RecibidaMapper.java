@@ -1,9 +1,12 @@
 package uacm.edu.mx.mapper;
 
+import org.springframework.stereotype.Component;
+
 import uacm.edu.mx.data.RecibidaRequest;
 import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 
+@Component
 public class RecibidaMapper {
 	
 	public CorrespondenciaRecibida createDataToEnti(RecibidaRequest recibidaData) {

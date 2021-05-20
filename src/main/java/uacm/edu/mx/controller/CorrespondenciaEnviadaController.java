@@ -43,15 +43,7 @@ public class CorrespondenciaEnviadaController {
 		return "correspondenciaEnviada/agregarCorrEnviada";
 	}
 
-	@PostMapping(value = "/guardar")
-	public String guardar(@ModelAttribute CorrespondenciaEnviada correspondenciaEnviada, BindingResult result,
-			RedirectAttributes attributes) {
-		corrEnvService.insertar(correspondenciaEnviada);
-		attributes.addFlashAttribute("msg", "La corresponencia se guardó.");
-		attributes.addFlashAttribute("alertClass", "alert-success");
 
-		return "redirect:/enviada/agregar";
-	}
 
 	@GetMapping(value = "/buscarUltimo")
 	public String buscarPor(String referenciaDocumento, Model model, RedirectAttributes attributes) {

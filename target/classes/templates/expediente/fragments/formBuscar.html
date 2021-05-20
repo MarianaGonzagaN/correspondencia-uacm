@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<form th:action="@{/expediente/guardar}" th:object="${expediente}"
+		method="post">
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha:
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<input type="hidden" th:field="*{idExpediente}"> <input
+					th:type="text" th:field="*{fechaApertura}" id="fechaApertura"
+					name="fechaApertura" class="form-control" disabled="disabled" />
+			</div>
+		</div>
+
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Nombre:
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<input th:type="text" th:field="*{nombreExpediente}"
+					id="nombreExpediente" name="nombreExpediente" class="form-control"
+					disabled="disabled" />
+			</div>
+		</div>
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Fondo:
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<select th:field="*{idFondo.id}" id="idFondo" name="idFondo"
+					class="form-control" title="Fondo" disabled="disabled">
+					<option value="0">--</option>
+					<option th:each="idfondo : ${listFondos}" th:value="${idfondo.id}"
+						th:utext="${idfondo.nombre}" />
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Sección:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<select th:field="*{idSeccion.id}" id="idSeccion" name="idSeccion"
+					class="form-control" title="Sección" disabled="disabled">
+					<option value="0">--</option>
+					<option th:each="idSeccion : ${listSecciones}"
+						th:value="${idSeccion.id}" th:utext="${idSeccion.nombre}" />
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">SubSección:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<select th:field="*{idSubSeccion.id}" id="idSubSeccion"
+					name="idSubSeccion" class="form-control" title="SubSección"
+					disabled="disabled">
+					<option value="0">--</option>
+					<option th:each="idSubSeccion : ${listSubSecciones}"
+						th:value="${idSubSeccion.id}" th:utext="${idSubSeccion.nombre}" />
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Serie:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<select th:field="*{idSerie.id}" id="idSerie" name="idSerie"
+					class="form-control" title="Serie" disabled="disabled">
+					<option value="0">--</option>
+					<option th:each="idSerie : ${listSeries}" th:value="${idSerie.id}"
+						th:utext="${idSerie.nombre}" />
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Subserie:
+				<span class="required">*</span>
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<select th:field="*{idSubSerie.id}" id="idSubSerie"
+					name="idSubSerie" class="form-control" title="Subserie"
+					disabled="disabled">
+					<option value="0">--</option>
+					<option th:each="idSubSerie : ${listSubSeries}"
+						th:value="${idSubSerie.id}" th:utext="${idSubSerie.nombre}" />
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group row ">
+			<label class="col-form-label col-md-3 col-sm-3 label-align">Carpeta
+				física: <span class="required">*</span>
+			</label>
+			<div class="col-md-6 col-sm-6 ">
+				<select th:field="*{idCarpetaFisica.id}" id="idCarpetaFisica"
+					name="idCarpetaFisica" class="form-control" title="CarpetaFisica"
+					disabled="disabled">
+					<option value="0">--</option>
+					<option th:each="idCarpetaFisica : ${listCarpetaFisica}"
+						th:value="${idCarpetaFisica.id}"
+						th:utext="${idCarpetaFisica.nombre}" />
+				</select>
+
+			</div>
+		</div>
+
+
+		<div class="ln_solid"></div>
+
+	</form>
+
+</body>
+</html>

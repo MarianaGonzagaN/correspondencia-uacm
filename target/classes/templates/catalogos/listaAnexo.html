@@ -1,0 +1,276 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- Bootstrap -->
+    <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/fontawesome/css/all.min.css}" rel="stylesheet" >
+    <!-- NProgress -->
+    <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- iCheck -->
+    <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link th:href="@{vendors/jqvmap/dist/jqvmap.min.css}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.css}" rel="stylesheet">
+    <!-- Datatables -->
+    <link th:href="@{/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css}" rel="stylesheet">
+    
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+			<!-- sidebar -->
+		    <div th:replace="/fragments/sidebar::div" >
+		    </div>
+		    <!--fin sidebar -->
+				<!-- navbar -->
+		    	<div th:replace="/fragments/navbar::div">
+		    	</div>
+        		<!-- fin navbar -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+			<div class="">
+				<div class="page-title">
+	              <div class="title_left">
+	                <h3>Lista de anexos<small></small></h3>
+	              </div>
+                </div>
+                <div class="clearfix"></div>
+			</div><!-- fin div class -->
+				<div class="row">
+				      <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Anexos<small></small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                          </div>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <br>
+                  </div>
+                  <div class="x_content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                            <p class="text-muted font-13 m-b-30">
+                              
+                            </p>
+                            <button class="btn btn-primary nBtn">Nuevo</button>
+                            <table  class="table table-striped" style="width:100%">
+                              <thead>
+                                <tr>
+                                  <th>Nombre</th>
+							      <th>Acción</th>                                                   		  
+                              </thead>
+
+
+                              <tbody>
+                                  <tr th:each="lista : ${lista}">
+							          <td th:text="${lista.nombre}"></td>
+							          <td>
+							          	<a class="btn btn-primary text-white eBtn" th:href="@{http://localhost:8080/encontrarAnexo/(id=${lista.id})}">Editar</a>
+										<a class="btn btn-danger text-white rBtn" th:href="${'/anexo/eliminar?id='+lista.id}">Eliminar</a>
+									  </td>               
+							      </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        
+                        
+                    </div>
+                  </div>
+                </div>
+              </div>
+				
+				</div>
+			
+			
+
+	
+        	  
+        </div>
+        
+        <!-- Modal Edit n New-->
+<div class="form">
+    <form th:action="@{/anexo/guardar}" method="post" th:object="${anexo}">
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"
+             id="modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" id="id" name="id" th:field="*{id}">
+                        <div class="form-group">
+                            <label for="nama" class=" label">Anexo</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="" th:field="*{nombre}" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Edit n Remove-->
+<div class="remove">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"
+         id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">e</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert-danger text-dark p-2">Esta seguro que desea eliminar ?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a class="btn btn-danger dBtn" href="">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <!-- fin page content -->
+        		<!-- Footer -->
+			    <div th:replace="/fragments/footer::footer">
+			    </div>
+      </div>
+	</div>
+    <!-- jQuery -->
+    <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <!-- FastClick -->
+    <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+    <!-- NProgress -->
+    <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+    <!-- bootstrap-progressbar -->
+   <script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+    <!-- iCheck -->
+    <script th:src="@{/vendors/iCheck/icheck.min.js}"></script>
+    <!-- DateJS -->
+    <script th:src="@{/vendors/DateJS/build/date.js}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script th:src="@{/vendors/moment/min/moment.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
+    <!-- bootstrap-wysiwyg -->
+	<script th:src="@{/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js}"></script>
+	<script th:src="@{/vendors/jquery.hotkeys/jquery.hotkeys.js}"></script>
+	<script th:src="@{/vendors/google-code-prettify/src/prettify.js}"></script>
+	<!-- jQuery Tags Input -->
+	<script th:src="@{/vendors/jquery.tagsinput/src/jquery.tagsinput.js}"></script>
+	<!-- Switchery -->
+	<script th:src="@{/vendors/switchery/dist/switchery.min.js}"></script>
+	<!-- Select2 -->
+	<script th:src="@{/vendors/select2/dist/js/select2.full.min.js}"></script>
+	<!-- Parsley -->
+	<script th:src="@{/vendors/parsleyjs/dist/parsley.min.js}"></script>
+	<!-- Autosize -->
+	<script th:src="@{/vendors/autosize/dist/autosize.min.js}"></script>
+	<!-- jQuery autocomplete -->
+	<script th:src="@{/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js}"></script>
+	<!-- starrr -->
+	<script th:src="@{/vendors/starrr/dist/starrr.js}"></script>
+    <!-- Custom Theme Scripts -->
+    <script th:src="@{/build/js/custom.min.js}"></script>
+    <!-- Datatables -->
+    <script th:src="@{/vendors/datatables.net/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.flash.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.html5.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-buttons/js/buttons.print.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js}"></script>
+    <script th:src="@{/vendors/datatables.net-scroller/js/dataTables.scroller.min.js}"></script>
+    <script th:src="@{/vendors/jszip/dist/jszip.min.js}"></script>
+    <script th:src="@{/vendors/pdfmake/build/pdfmake.min.js}"></script>
+    <script th:src="@{/vendors/pdfmake/build/vfs_fonts.js}"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+        $('.nBtn, .table .eBtn').click(function(e){
+            e.preventDefault();
+            var href = $(this).attr('href');
+            var text = $(this).text();
+
+            if(text == 'Editar') {
+                $.getJSON(href, function(response){
+                    $('.form #id').val(response.id).hide();
+                    $('.form #nombre').val(response.nombre);
+                });
+                $('.form #modal').modal();
+            } else {
+                $('.form #id').val('0').hide();
+                $('.form #nombre').val('');
+                $('.form #modal').modal();
+            }
+
+        });
+
+        $('.rBtn').click(function(event){
+            event.preventDefault();
+            var href=$(this).attr('href');
+            $(".remove .dBtn").attr('href',href);
+            $('.remove #modal').modal();
+
+        });
+
+    });
+    
+    </script>
+
+
+  </body>
+</html>

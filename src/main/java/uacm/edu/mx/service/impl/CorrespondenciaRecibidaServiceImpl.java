@@ -29,12 +29,12 @@ import uacm.edu.mx.service.ICorrespondenciaRecibidaService;
 @Service
 public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecibidaService{
 	
-	@Autowired
+	
 	private final CorrespondeciaRecibidaRepository corrRecRepository;
 	private final RecibidaMapper recibidaMapper;
 	
 	
-
+	@Autowired
 	public CorrespondenciaRecibidaServiceImpl(CorrespondeciaRecibidaRepository corrRecRepository,
 			RecibidaMapper recibidamapper) {
 		super();

@@ -8,7 +8,6 @@ import uacm.edu.mx.model.CorrespondenciaEnviada;
 
 public interface ICorrespondenciaEnviadaService {
 	
-	public RecibidaResponse insertar(CorrespondenciaEnviada correspondenciaEnviada);	
 	List<CorrespondenciaEnviada> buscarTodos();
 	CorrespondenciaEnviada buscarPorId(String referencia);
     List<CorrespondenciaEnviada> buscarPorFechaEnvio(Date fechaEnvioStart, Date fechaEnvioEnd);

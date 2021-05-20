@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaEnviada;
 import uacm.edu.mx.repository.CorrespondeciaEnviadaRepository;
 import uacm.edu.mx.service.ICorrespondenciaEnviadaService;
@@ -18,11 +19,7 @@ public class CorrespondenciaEnviadaServiceImpl implements ICorrespondenciaEnviad
 	@Autowired
 	private CorrespondeciaEnviadaRepository corrEnvRepository;
 
-	@Override
-	public void insertar(CorrespondenciaEnviada correspondenciaRecibida) {
-	
-		corrEnvRepository.save(correspondenciaRecibida);
-	}
+
 
 	@Override
 	public List<CorrespondenciaEnviada> buscarTodos() {
