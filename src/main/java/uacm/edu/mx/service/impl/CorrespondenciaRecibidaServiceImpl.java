@@ -47,7 +47,7 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 		LocalDate localDate = LocalDate.now();
 		String turno = recibidaRequest.getTurno()+"-"+localDate.getYear();
 		recibidaRequest.setTurno(turno);
-		return recibidaMapper.EntityToData(corrRecRepository.save(recibidaMapper.dataToEntity(recibidaRequest)));
+		return recibidaMapper.recibidaResponse(corrRecRepository.save(recibidaMapper.dataToEntity(recibidaRequest)));
 	}
 	
 
@@ -56,6 +56,7 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 		CorrespondenciaRecibida  corrRec = corrRecRepository.findById(referencia)
 				.orElseThrow(() -> new RecibidaException("No se encontró la correspondencia con la referencia" + referencia));	
 		return recibidaMapper.EntityToData(corrRec);
+		
 	}
 	
 	@Override
@@ -80,25 +81,19 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 	}
 
 	@Override
-	public List<CorrespondenciaRecibida> buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart,
+	public List<RecibidaResponse> buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart,
 			Date fechaRecepcionEnd, Integer areaId) {
-
-		//return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd,areaId);
-		return null;
+		return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd,areaId).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<CorrespondenciaRecibida> buscarPorEstatus(Integer estatusId) {
-		// TODO Auto-generated method stub
-		//return corrRecRepository.findByEstatus(estatusId);
-		return null;
+	public List<RecibidaResponse> buscarPorEstatus(Integer estatusId) {
+		return corrRecRepository.findByEstatus(estatusId).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<CorrespondenciaRecibida> buscarPorPrioridad(Integer prioridadId) {
-		// TODO Auto-generated method stub
-		//return corrRecRepository.findByPrioridad(prioridadId);
-		return null;
+	public List<RecibidaResponse> buscarPorPrioridad(Integer prioridadId) {
+		return corrRecRepository.findByPrioridad(prioridadId).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override

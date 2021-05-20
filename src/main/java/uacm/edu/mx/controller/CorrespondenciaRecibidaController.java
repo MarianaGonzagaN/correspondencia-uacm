@@ -100,23 +100,19 @@ public class CorrespondenciaRecibidaController {
 	
 
 	@GetMapping(value = "/buscarPorArea")
-	public List<CorrespondenciaRecibida> buscarCorrRecPorAreaRemitente(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, Integer id) {
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorAreaRemitente(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, Integer id) {
 
-		List<CorrespondenciaRecibida> listCorrRecArea = corrRecService
-				.buscarPorFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd, id);
-		
-		return listCorrRecArea;
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcionAndAreaEnvia(fechaRecepcionStart,
+				fechaRecepcionEnd,id));
 	}
 
 	/***
 	 * Método para buscar las correspondencias por estados
 	 * 
 	 */
-	@GetMapping(value = "/buscarPorEstatus")
-	public List<CorrespondenciaRecibida> buscarCorrRecPorEstatus(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, Integer id) {
-
-		List<CorrespondenciaRecibida> listCorrRecEstatus = corrRecService.buscarPorEstatus(id);
-		return listCorrRecEstatus;
+	@GetMapping("/estatus/{id}")
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorEstatus(@PathVariable("id") final Integer id) {
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorEstatus(id));
 
 	}
 
@@ -124,11 +120,10 @@ public class CorrespondenciaRecibidaController {
 	 * Método para buscar las correspondencias por prioridad
 	 * 
 	 */
-	@GetMapping(value = "/buscarPorPrioridad")
-	public List<CorrespondenciaRecibida> buscarCorrRecPorPrioridad(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, Integer id) {
+	@GetMapping("/prioridad/{id}")
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorPrioridad(@PathVariable("id") final Integer id) {
 
-		List<CorrespondenciaRecibida> listCorrRecPrioridad = corrRecService.buscarPorPrioridad(id);
-		return listCorrRecPrioridad;
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorPrioridad(id));
 	}
 
 	/***

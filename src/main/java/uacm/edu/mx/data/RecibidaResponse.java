@@ -15,29 +15,31 @@ import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import uacm.edu.mx.model.CatalogoValores;
 import uacm.edu.mx.model.Expediente;
 
 @Data
+@NoArgsConstructor
 public class RecibidaResponse {
 
 	private String referencia;
-	private Integer idTipoDocumento;
+	private CatalogoValores idTipoDocumento;
 	private Date fechaDocumento;
-	private Integer idMedio;
+	private CatalogoValores idMedio;
 	private String asunto;
-	private Integer idAreaRecibe;
+	private CatalogoValores idAreaRecibe;
 	private String nombreDestinatario;
-	private Integer idCargoDestinatario;
-	private Integer idPrioridad;
+	private CatalogoValores idCargoDestinatario;
+	private CatalogoValores idPrioridad;
 	private Integer existeAnexo;
 	private Integer numeroAnexos;
 	private String tipoAnexo;
 	private String ubicacionAnexo;
 	private Date fechaRequeridaRespuesta;
-	private Integer idInstruccion; 
+	private CatalogoValores idInstruccion; 
 	private String instruccionesAdicionales;
-	private Integer idEstatus;
+	private CatalogoValores idEstatus;
 	private String solucion;
 	private Date fechaSolucion;
 	private Expediente expediente;
@@ -56,6 +58,7 @@ public class RecibidaResponse {
 		this.referencia = referencia;
 		this.fechaRecepcion = fechaRecepcion;
 	}
+	
 	
 
 }

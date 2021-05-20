@@ -25,29 +25,28 @@ public interface CorrespondeciaRecibidaRepository extends JpaRepository<Correspo
 	@Query(value = "SELECT max(rtrim(c.turno,'-20')) FROM correspondencia_recibida c", nativeQuery = true)
 	public String max();
 
-	/*
-	 * @Query("SELECT c FROM CorrespondenciaRecibida c where c.idAreaEnvia.id=:areaEnvia and  c.fechaRecepcion BETWEEN :fechRecIni AND :fechRecFin"
-	 * ) List<CorrespondenciaRecibida>
-	 * findByFechaRecepcionAndAreaEnvia(@Param("fechRecIni") Date fechaRecepcionIni,
-	 * 
-	 * @Param("fechRecFin") Date fechaRecepcionfin, @Param("areaEnvia") Integer
-	 * areaEnvia);
-	 * 
-	 * /*
-	 * 
-	 * @Query("SELECT c FROM CorrespondenciaRecibida c where c.idEstatus.id=:idEstatus"
-	 * ) List<CorrespondenciaRecibida> findByEstatus(@Param("idEstatus") Integer
-	 * idEstatus);
-	 * 
-	 * @Query("SELECT c FROM CorrespondenciaRecibida c where c.idPrioridad.id=:idPrioridad"
-	 * ) List<CorrespondenciaRecibida> findByPrioridad(@Param("idPrioridad") Integer
-	 * idPrioridad);
-	 */
-	@Query("SELECT c FROM CorrespondenciaRecibida c where c.fechaRequeridaRespuesta BETWEEN :fechaReqIni AND :fechaReqFin")
-	Collection<CorrespondenciaRecibida> findByfechaRequeridaRespuesta(@Param("fechaReqIni") Date fechaReqIni,
+	
+	  @Query("SELECT c FROM CorrespondenciaRecibida c where c.idAreaEnvia.id=:areaEnvia and  c.fechaRecepcion BETWEEN :fechRecIni AND :fechRecFin"
+	  ) List<CorrespondenciaRecibida>
+	  findByFechaRecepcionAndAreaEnvia(@Param("fechRecIni") Date fechaRecepcionIni,
+	  
+	  @Param("fechRecFin") Date fechaRecepcionfin, @Param("areaEnvia") Integer
+	  areaEnvia);
+	  
+	  
+	  @Query("SELECT c FROM CorrespondenciaRecibida c where c.idEstatus.id=:idEstatus"
+	  ) List<CorrespondenciaRecibida> findByEstatus(@Param("idEstatus") Integer
+	  idEstatus);
+	  
+	  @Query("SELECT c FROM CorrespondenciaRecibida c where c.idPrioridad.id=:idPrioridad"
+	  ) List<CorrespondenciaRecibida> findByPrioridad(@Param("idPrioridad") Integer
+	  idPrioridad);
+	 
+	  @Query("SELECT c FROM CorrespondenciaRecibida c where c.fechaRequeridaRespuesta BETWEEN :fechaReqIni AND :fechaReqFin")
+	  Collection<CorrespondenciaRecibida> findByfechaRequeridaRespuesta(@Param("fechaReqIni") Date fechaReqIni,
 			@Param("fechaReqFin") Date fechaReqFin);
 
-	@Query("SELECT c FROM CorrespondenciaRecibida c where c.referenciaDocumento=:referencia")
-	CorrespondenciaRecibida findByDocumento(@Param("referencia") String referencia);
+	  @Query("SELECT c FROM CorrespondenciaRecibida c where c.referenciaDocumento=:referencia")
+	  CorrespondenciaRecibida findByDocumento(@Param("referencia") String referencia);
 
 }

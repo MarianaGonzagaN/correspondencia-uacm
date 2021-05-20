@@ -14,9 +14,9 @@ public interface ICorrespondenciaRecibidaService {
 	public RecibidaResponse buscarPorId(String referencia);
 	public List<RecibidaResponse> buscarTodas();
     public List<RecibidaResponse> buscarPorFechaRecepcion(Date fechaRecepcionStart, Date fechaRecepcionEnd);
-    List<CorrespondenciaRecibida> buscarPorFechaRecepcionAndAreaEnvia (Date fechaRecepcionStart, Date fechaRecepcionEnd, Integer areaId);
-    List<CorrespondenciaRecibida> buscarPorEstatus (Integer estatusId);
-    List<CorrespondenciaRecibida> buscarPorPrioridad (Integer prioridadId);
+    public List<RecibidaResponse> buscarPorFechaRecepcionAndAreaEnvia (Date fechaRecepcionStart, Date fechaRecepcionEnd, Integer areaId);
+    public List<RecibidaResponse> buscarPorEstatus (Integer estatusId);
+    public List<RecibidaResponse> buscarPorPrioridad (Integer prioridadId);
     List<CorrespondenciaRecibida> buscarPendientesDeSolucion();
     public String max();
     CorrespondenciaRecibida buscarArchivoPorReferenciaDeDocumento (String referencia);
