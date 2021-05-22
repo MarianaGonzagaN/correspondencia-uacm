@@ -8,19 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import uacm.edu.mx.data.ExpedienteRequest;
+import uacm.edu.mx.data.ExpedienteResponse;
 import uacm.edu.mx.model.Expediente;
 import uacm.edu.mx.service.ExpedienteService;
 import uacm.edu.mx.service.FondoService;
+import static org.springframework.http.HttpStatus.OK;
 
 
 @Controller
@@ -46,15 +50,11 @@ public class ExpedienteController {
 		return "expediente/agregarExpediente";
 	}
 
-	@PostMapping(value = "/guardar")
-	public String guardar(@ModelAttribute Expediente expediente, BindingResult result, RedirectAttributes attributes) {
-		expedienteService.insertar(expediente);
-		attributes.addFlashAttribute("msg", "El expediente se ha guardado.");
-		attributes.addFlashAttribute("alertClass", "alert-success");
-
-		return "redirect:/expediente/agregar";
+	@PostMapping("/save")
+	public ResponseEntity <ExpedienteResponse> guardar(@RequestBody final ExpedienteRequest expedienteRequest) {
+		return ResponseEntity.status(OK).body(expedienteService.insertar(expedienteRequest));
 	}
-
+	
 	@GetMapping(value = "/modificar")
 	public String getPagModificar(@ModelAttribute Expediente expedientes) {
 

@@ -2,6 +2,7 @@ package uacm.edu.mx.service.impl;
 
 import static org.springframework.http.HttpStatus.OK;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -27,13 +28,11 @@ import uacm.edu.mx.repository.CorrespondeciaRecibidaRepository;
 import uacm.edu.mx.service.ICorrespondenciaRecibidaService;
 
 @Service
-public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecibidaService{
-	
-	
+public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecibidaService {
+
 	private final CorrespondeciaRecibidaRepository corrRecRepository;
 	private final RecibidaMapper recibidaMapper;
-	
-	
+
 	@Autowired
 	public CorrespondenciaRecibidaServiceImpl(CorrespondeciaRecibidaRepository corrRecRepository,
 			RecibidaMapper recibidamapper) {
@@ -45,28 +44,28 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 	@Override
 	public RecibidaResponse insertar(RecibidaRequest recibidaRequest) {
 		LocalDate localDate = LocalDate.now();
-		String turno = recibidaRequest.getTurno()+"-"+localDate.getYear();
+		String turno = recibidaRequest.getTurno() + "-" + localDate.getYear();
 		recibidaRequest.setTurno(turno);
 		return recibidaMapper.recibidaResponse(corrRecRepository.save(recibidaMapper.dataToEntity(recibidaRequest)));
 	}
-	
 
 	@Override
 	public RecibidaResponse buscarPorId(String referencia) {
-		CorrespondenciaRecibida  corrRec = corrRecRepository.findById(referencia)
-				.orElseThrow(() -> new RecibidaException("No se encontró la correspondencia con la referencia" + referencia));	
+		CorrespondenciaRecibida corrRec = corrRecRepository.findById(referencia).orElseThrow(
+				() -> new RecibidaException("No se encontró la correspondencia con la referencia" + referencia));
 		return recibidaMapper.EntityToData(corrRec);
-		
+
 	}
-	
+
 	@Override
 	public List<RecibidaResponse> buscarTodas() {
 		return corrRecRepository.findAll().stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<RecibidaResponse> buscarPorFechaRecepcion(Date fechaRecepcionStart, Date fechaRecepcionEnd) {
-		return corrRecRepository.findAllByFechaRecepcionBetween(fechaRecepcionStart, fechaRecepcionEnd).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
+		return corrRecRepository.findAllByFechaRecepcionBetween(fechaRecepcionStart, fechaRecepcionEnd).stream()
+				.map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override
@@ -75,25 +74,23 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 	}
 
 	@Override
-	public List<CorrespondenciaRecibida> buscarPendientesDeSolucion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<RecibidaResponse>
 
-	@Override
-	public List<RecibidaResponse> buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart,
-			Date fechaRecepcionEnd, Integer areaId) {
-		return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd,areaId).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
+			buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart, Date fechaRecepcionEnd, Integer areaId) {
+		return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd, areaId)
+				.stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<RecibidaResponse> buscarPorEstatus(Integer estatusId) {
-		return corrRecRepository.findByEstatus(estatusId).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
+		return corrRecRepository.findByEstatus(estatusId).stream().map(recibidaMapper::EntityToData)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public List<RecibidaResponse> buscarPorPrioridad(Integer prioridadId) {
-		return corrRecRepository.findByPrioridad(prioridadId).stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
+		return corrRecRepository.findByPrioridad(prioridadId).stream().map(recibidaMapper::EntityToData)
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -101,7 +98,5 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 		// TODO Auto-generated method stub
 		return corrRecRepository.findByDocumento(referencia);
 	}
-
-
 
 }

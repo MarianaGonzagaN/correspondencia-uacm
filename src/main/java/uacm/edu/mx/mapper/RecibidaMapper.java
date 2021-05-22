@@ -1,5 +1,7 @@
 package uacm.edu.mx.mapper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -64,9 +66,11 @@ public class RecibidaMapper {
 		corrRec.setExpediente(recibidaRequest.getExpediente());
 		corrRec.setTurno(recibidaRequest.getTurno());
 		corrRec.setResponsableRecepcion(recibidaRequest.getResponsableRecepcion());
+		corrRec.setIdAreaEnvia(recibidaRequest.getIdAreaEnvia());
 		corrRec.setNombreRemitente(recibidaRequest.getNombreRemitente());
-		corrRec.setFechaRecepcion(recibidaRequest.getFechaRecepcion());
+		corrRec.setIdCargoRemitente(recibidaRequest.getIdCargoRemitente());
 		corrRec.setDocumento(recibidaRequest.getDocumento());
+		corrRec.setIdTurnadoA(recibidaRequest.getIdTurnadoA());
 		corrRec.setFechaTurnado(recibidaRequest.getFechaTurnado());
 		corrRec.setTipoDocumento(recibidaRequest.getTipoDocumento());
 		corrRec.setNombreDocumento(recibidaRequest.getNombreDocumento());
@@ -103,7 +107,7 @@ public class RecibidaMapper {
 		recibidaResponse.setResponsableRecepcion(corrRec.getResponsableRecepcion());
 		recibidaResponse.setNombreRemitente(corrRec.getNombreRemitente());
 		recibidaResponse.setFechaRecepcion(corrRec.getFechaRecepcion());
-		recibidaResponse.setDocumento(corrRec.getDocumento());
+		//recibidaResponse.setDocumento(corrRec.getDocumento());
 		recibidaResponse.setFechaTurnado(corrRec.getFechaTurnado());
 		recibidaResponse.setTipoDocumento(corrRec.getTipoDocumento());
 		recibidaResponse.setNombreDocumento(corrRec.getNombreDocumento());
@@ -120,7 +124,7 @@ public class RecibidaMapper {
 	}
 	
 	
-	
+
 		
 
 }

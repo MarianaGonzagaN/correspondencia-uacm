@@ -26,6 +26,7 @@ public interface CorrespondeciaRecibidaRepository extends JpaRepository<Correspo
 	public String max();
 
 	
+	
 	  @Query("SELECT c FROM CorrespondenciaRecibida c where c.idAreaEnvia.id=:areaEnvia and  c.fechaRecepcion BETWEEN :fechRecIni AND :fechRecFin"
 	  ) List<CorrespondenciaRecibida>
 	  findByFechaRecepcionAndAreaEnvia(@Param("fechRecIni") Date fechaRecepcionIni,

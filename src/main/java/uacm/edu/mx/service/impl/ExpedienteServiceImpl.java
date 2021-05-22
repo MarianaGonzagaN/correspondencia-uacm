@@ -6,6 +6,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import uacm.edu.mx.data.CatalogoRequest;
+import uacm.edu.mx.data.CatalogoResponse;
+import uacm.edu.mx.data.ExpedienteRequest;
+import uacm.edu.mx.data.ExpedienteResponse;
+import uacm.edu.mx.mapper.ExpedienteMapper;
 import uacm.edu.mx.model.Expediente;
 import uacm.edu.mx.repository.ExpedienteRepository;
 import uacm.edu.mx.service.ExpedienteService;
@@ -13,13 +19,22 @@ import uacm.edu.mx.service.ExpedienteService;
 @Service
 public class ExpedienteServiceImpl implements ExpedienteService {
 	
+	
+	private final ExpedienteRepository expedienteRepository;
+	private final ExpedienteMapper expedienteMapper;
+	
 	@Autowired
-	private ExpedienteRepository expedienteRepository;
+	public ExpedienteServiceImpl(ExpedienteRepository expedienteRepository, ExpedienteMapper expedienteMapper) {
+		super();
+		this.expedienteRepository = expedienteRepository;
+		this.expedienteMapper = expedienteMapper;
+	}
+
+	
 
 	@Override
-	public void insertar(Expediente expediente) {
-		expedienteRepository.save(expediente);
-		
+	public ExpedienteResponse insertar(ExpedienteRequest expedienteRequest) {
+		return expedienteMapper.EntityToData(expedienteRepository.save(expedienteMapper.dataToEntity(expedienteRequest)));
 	}
 
 	@Override

@@ -39,7 +39,12 @@ public class CatalogoValores {
 	private Catalogo catalogo;
 
 	public CatalogoValores() {
-		super();
 	}
-
+	
+	public CatalogoValores(Long id) {
+		super();
+        this.id = id;
+	}
+	
+	
 }

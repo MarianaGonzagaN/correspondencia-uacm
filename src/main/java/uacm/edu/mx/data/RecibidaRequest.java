@@ -41,9 +41,12 @@ public class RecibidaRequest {
 	/************************************/
 	private String turno;
 	private String responsableRecepcion;
+	private CatalogoValores idAreaEnvia;
 	private String nombreRemitente;
+	private CatalogoValores idCargoRemitente;
 	private Date fechaRecepcion; 
 	private byte[] documento;
+	private CatalogoValores idTurnadoA;
 	private Date fechaTurnado;
 	private String tipoDocumento;
 	private String nombreDocumento;

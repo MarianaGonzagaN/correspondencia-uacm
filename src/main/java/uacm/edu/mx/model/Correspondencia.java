@@ -67,13 +67,13 @@ public class Correspondencia {
 	private String tipoAnexo;
 	
 
-	@Column(name="ubicacion_anexo",nullable = false)
+	@Column(name="ubicacion_anexo")
 	private String ubicacionAnexo;
 	
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	@Column(name="fecha_requerida_respuesta",nullable = false)
+	@Column(name="fecha_requerida_respuesta")
 	private Date fechaRequeridaRespuesta;
 	
 	@OneToOne(fetch = FetchType.EAGER)

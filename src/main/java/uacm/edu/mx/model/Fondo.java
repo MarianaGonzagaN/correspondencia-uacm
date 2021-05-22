@@ -19,10 +19,7 @@ import lombok.Setter;
 public class Fondo {
 	
 	@Id
-	@SequenceGenerator(name="catalogo_fondo_id_seq",
-    sequenceName="catalogo_fondo_id_seq",
-    allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="catalogo_fondo_id_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	@Column(name="nombre")
@@ -37,6 +34,10 @@ public class Fondo {
 		
 	}
 	
+	public Fondo(Integer id) {
+		super();
+        this.id = id;
+	}
 	
 	public int getId() {
 		return id;

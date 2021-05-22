@@ -3,11 +3,13 @@ package uacm.edu.mx.service;
 import java.util.Date;
 import java.util.List;
 
+import uacm.edu.mx.data.ExpedienteRequest;
+import uacm.edu.mx.data.ExpedienteResponse;
 import uacm.edu.mx.model.Expediente;
 
 public interface ExpedienteService {
 	
-	void insertar(Expediente expediente);
+	public ExpedienteResponse insertar(ExpedienteRequest expedienteRequest);
 	Expediente buscarPorId(Integer idExpediente);
 	List<Expediente> buscarTodos();
 	void eliminar(int idExpediente);

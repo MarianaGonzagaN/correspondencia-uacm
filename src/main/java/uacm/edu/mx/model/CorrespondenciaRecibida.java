@@ -28,7 +28,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CorrespondenciaRecibida extends Correspondencia {
 
-	@Column(name="turno",nullable = false)
+	@Column(name="turno")
 	private String turno;
 	
 	@Column(name="responsable_recepcion")
@@ -47,7 +47,7 @@ public class CorrespondenciaRecibida extends Correspondencia {
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	@Column(name="fecha_recepcion",nullable = false)
+	@Column(name="fecha_recepcion")
 	private Date fechaRecepcion; 
 	
 	@Lob
@@ -60,7 +60,7 @@ public class CorrespondenciaRecibida extends Correspondencia {
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	@Column(name="fecha_turnado",nullable = false)
+	@Column(name="fecha_turnado")
 	private Date fechaTurnado;
 	
 	@Column(name="tipo_documento")

@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,6 @@ import uacm.edu.mx.service.ICorrespondenciaRecibidaService;
 import uacm.edu.mx.service.ExpedienteService;
 import uacm.edu.mx.service.GenerateExcelFileCorrRecPorFechaRecepService;
 
-import static org.springframework.http.HttpStatus.OK;
 import org.springframework.http.ResponseEntity;
 
 @Slf4j
@@ -59,32 +59,32 @@ public class CorrespondenciaRecibidaController {
 	}
 	
 
-	/*add
-	 * @GetMapping private String getCorrRec(@ModelAttribute CorrespondenciaRecibida
-	 * corrRec) {
-	 * 
-	 * return "correspondenciaRecibida/agregarCorrRecibida"; }
-	 */
-
 	@GetMapping("buscarTurno/")
 	public String buscarPorTurno() {
 		String turno = "0";
 		return turno = corrRecService.max();
 	}
 
-	@PostMapping
-	public ResponseEntity<RecibidaResponse>  guardarCorrespondencia( @RequestParam("file") MultipartFile file, @RequestBody RecibidaRequest recibidaRequest)
-			throws IOException {
+	@PostMapping("/guardarConDoc")
+	public ResponseEntity<RecibidaResponse>  guardarCorr( @RequestParam("file") MultipartFile file,@ModelAttribute("recibidaRequest") RecibidaRequest recibidaRequest)
+			throws IOException, ParseException {
 
 		String nombre = file.getOriginalFilename();
 		String tipo = file.getContentType();
-
 		recibidaRequest.setTipoDocumento(tipo);
 		recibidaRequest.setNombreDocumento(nombre);
 		recibidaRequest.setDocumento(file.getBytes());
+		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
+	}
+	
+	
+	@PostMapping("guardar")
+	public ResponseEntity<RecibidaResponse>  guardarCorrespondencia( @RequestBody RecibidaRequest recibidaRequest) throws ParseException
+	{
 
 		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
 	}
+	
 	
 
 	@GetMapping("/{referencia}")
@@ -131,6 +131,12 @@ public class CorrespondenciaRecibidaController {
 	 * 
 	 */
 
-	
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
+	}
+
 
 }
