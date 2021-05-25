@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import uacm.edu.mx.data.CatalogoResponse;
 import uacm.edu.mx.data.ExpedienteRequest;
 import uacm.edu.mx.data.ExpedienteResponse;
 import uacm.edu.mx.model.Expediente;
@@ -43,24 +45,16 @@ public class ExpedienteController {
 		this.fondoService = fondoService;
 	}
 
-
-	@GetMapping("/agregar")
-	private String getExpediente(@ModelAttribute Expediente expediente) {
-
-		return "expediente/agregarExpediente";
-	}
-
-	@PostMapping("/save")
-	public ResponseEntity <ExpedienteResponse> guardar(@RequestBody final ExpedienteRequest expedienteRequest) {
-		return ResponseEntity.status(OK).body(expedienteService.insertar(expedienteRequest));
+	@PostMapping
+	public ResponseEntity <ExpedienteResponse> createExpediente(@RequestBody final ExpedienteRequest expedienteRequest) {
+		return ResponseEntity.status(OK).body(expedienteService.createExpediente(expedienteRequest));
 	}
 	
-	@GetMapping(value = "/modificar")
-	public String getPagModificar(@ModelAttribute Expediente expedientes) {
-
-		return "expediente/modificarExpediente";
-
+	@GetMapping()
+	public ResponseEntity<List<ExpedienteResponse>> getAllExpedientes() {
+		return ResponseEntity.status(OK).body(expedienteService.getAllExpedientes());
 	}
+	
 
 	@PostMapping(value = "/buscarPorNombre")
 	public String buscarExpedientePorNombre(@ModelAttribute Expediente expediente1, String nombreExpediente,
@@ -105,13 +99,6 @@ public class ExpedienteController {
 
 	}
 	
-	@GetMapping(value = "/buscar")
-	public String getPagBuscar(@ModelAttribute Expediente expedientes) {
-
-		return "expediente/buscarExpedientes";
-
-	}
-
 	
 	@PostMapping(value = "/buscarExpediente")
 	public String buscarExpediente(@ModelAttribute Expediente expediente1, String nombreExpediente,
@@ -159,13 +146,6 @@ public class ExpedienteController {
 
 	}
 
-	@GetMapping("/listar")
-	private String listar(Model model) {
-
-		List<Expediente> listExp = expedienteService.buscarTodos();
-		model.addAttribute("expedientes", listExp);
-		return "expediente/listaExpedientes";
-	}
 
 	@GetMapping(value = "/buscarPorFecha")
 	public String buscarExpedientePorFecha(Date fechaAperturaStart, Date fechaAperturaEnd, Model model,

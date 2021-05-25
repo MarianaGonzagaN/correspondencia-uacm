@@ -9,9 +9,9 @@ import uacm.edu.mx.model.Expediente;
 
 public interface ExpedienteService {
 	
-	public ExpedienteResponse insertar(ExpedienteRequest expedienteRequest);
-	Expediente buscarPorId(Integer idExpediente);
-	List<Expediente> buscarTodos();
+	public ExpedienteResponse createExpediente(ExpedienteRequest expedienteRequest);
+	public List<ExpedienteResponse> getAllExpedientes();
+	public Expediente buscarPorId(Integer idExpediente);
 	void eliminar(int idExpediente);
 	Expediente buscarPorNombre(String nombreExpediente);
 	List<Expediente> buscarPorFecha(Date fechaAperturaStart, Date fechaAperturaEnd);

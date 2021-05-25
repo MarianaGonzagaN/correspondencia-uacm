@@ -269,13 +269,6 @@ public class CorrespondenciaEnviadaController {
 
 	}
 
-	@ModelAttribute
-	public void setListas(Model model) {
-		model.addAttribute("listaExpedientes", expedienteService.buscarTodos());
-
-	}
-
-
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

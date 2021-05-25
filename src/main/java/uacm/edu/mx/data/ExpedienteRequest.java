@@ -7,7 +7,6 @@ import uacm.edu.mx.model.CatalogoValores;
 import uacm.edu.mx.model.Fondo;
 
 @Data
-@NoArgsConstructor
 public class ExpedienteRequest {
 	
 	private Date fechaApertura; 

@@ -3,6 +3,7 @@ package uacm.edu.mx.service.impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,17 @@ public class ExpedienteServiceImpl implements ExpedienteService {
 		this.expedienteMapper = expedienteMapper;
 	}
 
-	
-
 	@Override
-	public ExpedienteResponse insertar(ExpedienteRequest expedienteRequest) {
+	public ExpedienteResponse createExpediente(ExpedienteRequest expedienteRequest) {
 		return expedienteMapper.EntityToData(expedienteRepository.save(expedienteMapper.dataToEntity(expedienteRequest)));
 	}
+	
+	@Override
+	public List<ExpedienteResponse> getAllExpedientes() {
+		// TODO Auto-generated method stub
+		return expedienteRepository.findAll().stream().map(expedienteMapper::EntityToData).collect(Collectors.toList());
+	}
+
 
 	@Override
 	public Expediente buscarPorId(Integer idExpediente) {
@@ -46,11 +52,7 @@ public class ExpedienteServiceImpl implements ExpedienteService {
 	
 	}
 
-	@Override
-	public List<Expediente> buscarTodos() {
-		return expedienteRepository.findAll();
-	}
-
+	
 	@Override
 	public void eliminar(int idExpediente) {
 		expedienteRepository.deleteById(idExpediente);
