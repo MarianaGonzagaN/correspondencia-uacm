@@ -21,7 +21,7 @@ import uacm.edu.mx.data.CatalogoValorRequest;
 import uacm.edu.mx.service.ICatalogoService;
 
 @RestController
-@RequestMapping(value = "/catalogo")
+@RequestMapping(value = "/api/catalogo")
 public class CatalogoController {
 
 	private final ICatalogoService catalogoService;
@@ -63,6 +63,13 @@ public class CatalogoController {
 
 		return ResponseEntity.status(OK).body(catalogoService.getAllCatalogo());
 	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<CatalogoResponse>> getAllCatalogoValores() {
+
+		return ResponseEntity.status(OK).body(catalogoService.getAllCatalogosValores());
+	}
+
 
 	@GetMapping("/{id}")
 	public ResponseEntity<CatalogoResponse> getCatalogo(@PathVariable("id") final Long id) {

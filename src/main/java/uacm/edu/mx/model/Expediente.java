@@ -24,6 +24,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+/**
+ * @author gonza
+ *
+ */
 @Entity
 @Table(name="expediente")
 @Getter 
@@ -44,9 +48,12 @@ public class Expediente {
 	@Column(name="nombre_expediente")
 	private String nombreExpediente;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_fondo",referencedColumnName = "id")
-	private Fondo idFondo;
+	/*
+	 * @OneToOne(fetch = FetchType.EAGER)
+	 * 
+	 * @JoinColumn(name = "id_fondo", referencedColumnName = "id") private Fondo
+	 * idFondo;
+	 */
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_seccion", referencedColumnName = "id")

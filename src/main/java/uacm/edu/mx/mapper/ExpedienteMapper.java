@@ -16,7 +16,7 @@ public class ExpedienteMapper {
 		Expediente expediente = new Expediente();
 		expediente.setFechaApertura(expedienteRequest.getFechaApertura());
 		expediente.setNombreExpediente(expedienteRequest.getNombreExpediente());
-		expediente.setIdFondo(expedienteRequest.getIdFondo());
+		//expediente.setIdFondo(expedienteRequest.getIdFondo());
 		expediente.setIdSeccion(expedienteRequest.getIdSeccion());
 		expediente.setIdSubSeccion(expedienteRequest.getIdSubSeccion());
 		expediente.setIdSerie(expedienteRequest.getIdSerie());
@@ -31,7 +31,7 @@ public class ExpedienteMapper {
 		expedienteResponse.setId(expediente.getIdExpediente());
 		expedienteResponse.setFechaApertura(expediente.getFechaApertura());
 		expedienteResponse.setNombreExpediente(expediente.getNombreExpediente());
-		expedienteResponse.setIdFondo(expediente.getIdFondo());
+		//expedienteResponse.setIdFondo(expediente.getIdFondo());
 		expedienteResponse.setIdSeccion(expediente.getIdSeccion());
 		expedienteResponse.setIdSubSeccion(expediente.getIdSubSeccion());
 		expedienteResponse.setIdSerie(expediente.getIdSerie());

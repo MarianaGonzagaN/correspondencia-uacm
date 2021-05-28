@@ -7,5 +7,6 @@ import uacm.edu.mx.model.Catalogo;
 
 @Repository
 public interface CatalogoRepository extends JpaRepository<Catalogo, Long> {
+	
 
 }

@@ -21,6 +21,7 @@ public interface ICatalogoService {
 
 	public List<CatalogoResponse> getAllCatalogo();
 
+	public List<CatalogoResponse> getAllCatalogosValores();
 	public CatalogoResponse addValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_id);
 
 	public CatalogoResponse updateValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_valor_id);

@@ -78,6 +78,17 @@ public class CatalogoService implements ICatalogoService {
 		// TODO Auto-generated method stub
 		return catalogoRepository.findAll().stream().map(catalogoMapper::EntityToData).collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<CatalogoResponse> getAllCatalogosValores() {
+		// TODO Auto-generated method stub
+		return catalogoRepository.findAll().stream().map(catalogo ->{ 
+			List<CatalogoValorResponse> setCatalogoValores = catalogoValorRepository.findByCatalogo(catalogo).stream()
+					.map(catalogoMapper::EntityValorToData).collect(Collectors.toList());
+			return catalogoMapper.catalogoResponse(catalogo, setCatalogoValores);
+		}).collect(Collectors.toList());
+	}
+	
 
 	@Override
 	public CatalogoResponse addValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_id) {
