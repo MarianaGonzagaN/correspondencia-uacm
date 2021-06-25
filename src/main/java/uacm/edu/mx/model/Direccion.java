@@ -25,7 +25,7 @@ public class Direccion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int idDireccion;
+	private Long idDireccion;
 	
 	@NotBlank(message = "calle  es requerido")
 	@Column(name = "calle",nullable = false, length = 50)

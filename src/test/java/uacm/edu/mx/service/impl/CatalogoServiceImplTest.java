@@ -56,7 +56,6 @@ class CatalogoServiceImplTest {
 		assertEquals(1L, catResp.getId()); //
 		assertEquals("Test3", catResp.getNombre());
 
-		// fail("Not yet implemented");
 	}
 
 	@Test
@@ -67,31 +66,24 @@ class CatalogoServiceImplTest {
 	@Test
 	void testGetCatalogo() {
 
-		// given
 		CatalogoResponse catResp = catService.getCatalogo(1L);
-
-		// when
-
-		// then
 
 		assertEquals(1L, catResp.getId());
 		assertEquals("Test3", catResp.getNombre());
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	void testGetAllCatalogo() {
-
 		List<CatalogoResponse> lista = catService.getAllCatalogo();
-
-		// fail("Not yet implemented");
+		log.debug(lista.toString());
 	}
 
 	@Test
 	void testGetAllCatalogosValores() {
 
 		List<CatalogoResponse> lista = catService.getAllCatalogosValores();
-		// fail("Not yet implemented");
+		log.debug(lista.toString());
 	}
 
 	@Test
@@ -109,30 +101,24 @@ class CatalogoServiceImplTest {
 		assertNotNull(catValorReq);
 		assertEquals(1L, catResp.getId());
 
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	void testUpdateValorCatalogo() {
 
-		// given
 		CatalogoValorRequest catalogoValorRequest = new CatalogoValorRequest();
 		catalogoValorRequest.setNombre("CatValTest-1");
-		// when
+
 		CatalogoResponse catResp = catService.updateValorCatalogo(catalogoValorRequest, 1L);
-		// then
+
 		assertEquals(1L, catResp.getId());
-		// fail("Not yet implemented");
+
 	}
 
 	@Test
 	void testDeleteValorCatalogo() {
-		// given
-		// when
 		catService.deleteValorCatalogo(1L);
-		// then
-
-		// fail("Not yet implemented");
 	}
 
 }
