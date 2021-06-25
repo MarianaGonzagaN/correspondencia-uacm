@@ -15,34 +15,8 @@ import uacm.edu.mx.model.Expediente;
 @Component
 public class RecibidaMapper {
 	
-	public CorrespondenciaRecibida createDataToEnti(RecibidaRequest recibidaData) {
-		
-		CorrespondenciaRecibida correspondenciaRecibida = new CorrespondenciaRecibida();
-		
-		correspondenciaRecibida.setAsunto(recibidaData.getAsunto());
-		correspondenciaRecibida.setDocumento(null);
-		correspondenciaRecibida.setExisteAnexo(null);
-		correspondenciaRecibida.setExpediente(null);
-		correspondenciaRecibida.setFechaDocumento(null);
-		correspondenciaRecibida.setFechaRecepcion(null);
-		correspondenciaRecibida.setFechaRequeridaRespuesta(null);
-		correspondenciaRecibida.setFechaSolucion(null);
-		correspondenciaRecibida.setFechaTurnado(null);
-		correspondenciaRecibida.setInstruccionesAdicionales(null);
-		correspondenciaRecibida.setNombreDestinatario(null);
-		correspondenciaRecibida.setNombreDocumento(null);
-		correspondenciaRecibida.setNombreRemitente(null);
-		correspondenciaRecibida.setNumeroAnexos(null);
-	
-		
-		return correspondenciaRecibida;
-	}
-	
-	
-	
 	public CorrespondenciaRecibida dataToEntity(RecibidaRequest recibidaRequest) {
 		CorrespondenciaRecibida corrRec = new CorrespondenciaRecibida();
-		
 		corrRec.setReferenciaDocumento(recibidaRequest.getReferenciaDocumento());
 		corrRec.setIdTipoDocumento(recibidaRequest.getIdTipoDocumento());
 		corrRec.setFechaDocumento(recibidaRequest.getFechaDocumento());
@@ -77,11 +51,8 @@ public class RecibidaMapper {
 		return corrRec;
 	}
 	
-	
 	public RecibidaResponse EntityToData(CorrespondenciaRecibida corrRec) {
-
 		RecibidaResponse recibidaResponse = new RecibidaResponse();
-		
 		recibidaResponse.setReferencia(corrRec.getReferenciaDocumento());
 		recibidaResponse.setIdTipoDocumento(corrRec.getIdTipoDocumento());
 		recibidaResponse.setFechaDocumento(corrRec.getFechaDocumento());
@@ -107,7 +78,7 @@ public class RecibidaMapper {
 		recibidaResponse.setResponsableRecepcion(corrRec.getResponsableRecepcion());
 		recibidaResponse.setNombreRemitente(corrRec.getNombreRemitente());
 		recibidaResponse.setFechaRecepcion(corrRec.getFechaRecepcion());
-		//recibidaResponse.setDocumento(corrRec.getDocumento());
+		recibidaResponse.setDocumento(corrRec.getDocumento());
 		recibidaResponse.setFechaTurnado(corrRec.getFechaTurnado());
 		recibidaResponse.setTipoDocumento(corrRec.getTipoDocumento());
 		recibidaResponse.setNombreDocumento(corrRec.getNombreDocumento());
@@ -115,12 +86,29 @@ public class RecibidaMapper {
 	}
 		
 	public RecibidaResponse recibidaResponse(CorrespondenciaRecibida corrRec) {
-
 		RecibidaResponse recibidaResponse = new RecibidaResponse(null, null);
-		
 		recibidaResponse.setReferencia(corrRec.getReferenciaDocumento());
 		recibidaResponse.setFechaRecepcion(corrRec.getFechaRecepcion());
 		return recibidaResponse;
+	}
+	
+	public CorrespondenciaRecibida createDataToEnti(RecibidaRequest recibidaData) {
+		CorrespondenciaRecibida correspondenciaRecibida = new CorrespondenciaRecibida();
+		correspondenciaRecibida.setAsunto(recibidaData.getAsunto());
+		correspondenciaRecibida.setDocumento(null);
+		correspondenciaRecibida.setExisteAnexo(null);
+		correspondenciaRecibida.setExpediente(null);
+		correspondenciaRecibida.setFechaDocumento(null);
+		correspondenciaRecibida.setFechaRecepcion(null);
+		correspondenciaRecibida.setFechaRequeridaRespuesta(null);
+		correspondenciaRecibida.setFechaSolucion(null);
+		correspondenciaRecibida.setFechaTurnado(null);
+		correspondenciaRecibida.setInstruccionesAdicionales(null);
+		correspondenciaRecibida.setNombreDestinatario(null);
+		correspondenciaRecibida.setNombreDocumento(null);
+		correspondenciaRecibida.setNombreRemitente(null);
+		correspondenciaRecibida.setNumeroAnexos(null);
+		return correspondenciaRecibida;
 	}
 	
 	

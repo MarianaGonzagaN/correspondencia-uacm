@@ -2,85 +2,50 @@ package uacm.edu.mx.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name="direccion")
 public class Direccion {
 	
 	@Id
-	@SequenceGenerator(name = "direccion_id_direccion_seq", sequenceName = "direccion_id_direccion_seq", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "direccion_id_direccion_seq")
-	@Column(name = "id_direccion")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int idDireccion;
-	@Column(name = "calle")
+	
+	@NotBlank(message = "calle  es requerido")
+	@Column(name = "calle",nullable = false, length = 50)
 	private String calle;
-	@Column(name = "colonia")
+	
+	@NotBlank(message = "colonia es requerido")
+	@Column(name = "colonia", nullable = false, length = 50)
 	private String colonia;
-	@Column(name = "cod_postal")
-	private String cod_postal;
-	@Column(name = "delegacion")
+	
+	@NotBlank(message = "codigo postales es requerido")
+	@Column(name = "cod_postal", nullable = false , length = 5)
+	private String codPostal;
+	
+	@NotBlank(message = "delegaciones requerido")
+	@Column(name = "delegacion", nullable = false, length = 50)
 	private String delegacion;
-	@Column(name = "ciudad")
+	
+	@NotBlank(message = "ciudad es requerido")
+	@Column(name = "ciudad", nullable = false,  length = 50)
 	private String ciudad;
-
-	public Direccion() {
-
-	}
-
-	public int getIdDireccion() {
-		return idDireccion;
-	}
-
-	public void setIdDireccion(int idDireccion) {
-		this.idDireccion = idDireccion;
-	}
-
-	public String getCalle() {
-		return calle;
-	}
-
-	public void setCalle(String calle) {
-		this.calle = calle;
-	}
-
-	public String getColonia() {
-		return colonia;
-	}
-
-	public void setColonia(String colonia) {
-		this.colonia = colonia;
-	}
-
-	public String getCod_postal() {
-		return cod_postal;
-	}
-
-	public void setCod_postal(String cod_postal) {
-		this.cod_postal = cod_postal;
-	}
-
-	public String getDelegacion() {
-		return delegacion;
-	}
-
-	public void setDelegacion(String delegacion) {
-		this.delegacion = delegacion;
-	}
-
-	public String getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
-
 	
 
-	
 }

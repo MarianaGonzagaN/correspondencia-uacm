@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uacm.edu.mx.model.CorrespondenciaEnviada;
 import uacm.edu.mx.service.ICorrespondenciaEnviadaService;
 import uacm.edu.mx.service.ExpedienteService;
 
-@Controller
-@RequestMapping("/enviada")
+@RestController
+@RequestMapping(value = "/api/enviada")
 public class CorrespondenciaEnviadaController {
 
 	private final Logger logger = LoggerFactory.getLogger(CorrespondenciaEnviadaController.class);

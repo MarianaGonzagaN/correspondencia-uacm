@@ -3,6 +3,7 @@ package uacm.edu.mx.mapper;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,6 @@ import uacm.edu.mx.model.CatalogoValores;
 @Component
 public class CatalogoMapper {
 
-	
 	public Catalogo dataToEntity(CatalogoRequest catalogoRequest) {
 		
 		Catalogo catalogo = new Catalogo();

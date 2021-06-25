@@ -18,22 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 import uacm.edu.mx.data.CatalogoRequest;
 import uacm.edu.mx.data.CatalogoResponse;
 import uacm.edu.mx.data.CatalogoValorRequest;
+import uacm.edu.mx.data.CatalogoValorResponse;
 import uacm.edu.mx.service.ICatalogoService;
+import uacm.edu.mx.service.ICatalogoValorService;
 
 @RestController
 @RequestMapping(value = "/api/catalogo")
 public class CatalogoController {
 
 	private final ICatalogoService catalogoService;
+	private final ICatalogoValorService catalogoValorService;
 
 	@Autowired
-	public CatalogoController(ICatalogoService catalogoService) {
+	public CatalogoController(ICatalogoService catalogoService, ICatalogoValorService catalogoValorService) {
 		super();
 		this.catalogoService = catalogoService;
+		this.catalogoValorService = catalogoValorService;
 	}
 
 	@PostMapping
-	public ResponseEntity<CatalogoResponse> createUser(@RequestBody final CatalogoRequest catalogoRequest) {
+	public ResponseEntity<CatalogoResponse> createCatalogo(@RequestBody final CatalogoRequest catalogoRequest) {
 
 		return ResponseEntity.status(OK).body(catalogoService.createCatalogo(catalogoRequest));
 	}
@@ -75,6 +79,12 @@ public class CatalogoController {
 	public ResponseEntity<CatalogoResponse> getCatalogo(@PathVariable("id") final Long id) {
 
 		return ResponseEntity.status(OK).body(catalogoService.getCatalogo(id));
+	}
+	
+	
+	@GetMapping("/valores/{nombre}")
+	public ResponseEntity<List<CatalogoValorResponse>> getCatalogoByNombre(@PathVariable("nombre") final String nombre) {
+		return ResponseEntity.status(OK).body(catalogoValorService.getValoresCatalogoByNombre(nombre));
 	}
 	
 	@PutMapping("valor/{id}")

@@ -1,12 +1,9 @@
 package uacm.edu.mx.service.impl;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lombok.extern.slf4j.Slf4j;
 import uacm.edu.mx.data.CatalogoRequest;
 import uacm.edu.mx.data.CatalogoResponse;
@@ -22,14 +19,14 @@ import uacm.edu.mx.service.ICatalogoService;
 
 @Slf4j
 @Service
-public class CatalogoService implements ICatalogoService {
+public class CatalogoServiceImpl implements ICatalogoService {
 
 	private final CatalogoRepository catalogoRepository;
 	private final CatalogoValorRepository catalogoValorRepository;
 	private final CatalogoMapper catalogoMapper;
 
 	@Autowired
-	public CatalogoService(CatalogoRepository catalogoRepository, CatalogoValorRepository catalogoValorRepository,
+	public CatalogoServiceImpl(CatalogoRepository catalogoRepository, CatalogoValorRepository catalogoValorRepository,
 			CatalogoMapper catalogoMapper) {
 		super();
 		this.catalogoRepository = catalogoRepository;
@@ -40,7 +37,6 @@ public class CatalogoService implements ICatalogoService {
 	@Override
 	public CatalogoResponse createCatalogo(CatalogoRequest catalogoRequest) {
 		// TODO Auto-generated method stub
-
 		return catalogoMapper.EntityToData(catalogoRepository.save(catalogoMapper.dataToEntity(catalogoRequest)));
 	}
 

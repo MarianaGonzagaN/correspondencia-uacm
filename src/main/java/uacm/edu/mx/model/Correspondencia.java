@@ -11,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,6 +27,7 @@ public class Correspondencia {
 	@Column(name="referencia_documento")
 	private String referenciaDocumento; 
 	
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_tipo_documento",referencedColumnName = "id")
 	private CatalogoValores idTipoDocumento;

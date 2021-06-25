@@ -1,0 +1,14 @@
+Listado de rutas de carpetas
+El n£mero de serie del volumen es A692-4B80
+C:.
++---static
+\---templates
+    +---catalogos
+    +---correspondenciaEnviada
+    |   \---fragments
+    +---correspondenciaRecibida
+    |   \---fragments
+    +---expediente
+    |   \---fragments
+    +---fragments
+    \---usuario

@@ -1,43 +1,61 @@
 package uacm.edu.mx.service.impl;
 
 import java.util.List;
-import java.util.Optional;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uacm.edu.mx.data.CatalogoRequest;
+import uacm.edu.mx.data.CatalogoResponse;
+import uacm.edu.mx.data.FondoRequest;
+import uacm.edu.mx.data.FondoResponse;
+import uacm.edu.mx.exception.CatalogoException;
+import uacm.edu.mx.exception.FondoException;
+import uacm.edu.mx.mapper.FondoMapper;
+import uacm.edu.mx.model.Catalogo;
 import uacm.edu.mx.model.Fondo;
 import uacm.edu.mx.repository.FondoRepository;
-import uacm.edu.mx.service.FondoService;
+import uacm.edu.mx.service.IFondoService;
 
 @Service
-public class FondoServiceImpl implements FondoService {
-	
+public class FondoServiceImpl implements IFondoService {
+
+	private final FondoRepository fondoRepository;
+	private final FondoMapper fondoMapper;
+
 	@Autowired
-	private FondoRepository fondoRepository;
-
-	@Override
-	public void insertar(Fondo fondo) {
-		fondoRepository.save(fondo);
-		
+	public FondoServiceImpl(FondoRepository fondoRepository, FondoMapper fondoMapper) {
+		super();
+		this.fondoRepository = fondoRepository;
+		this.fondoMapper = fondoMapper;
 	}
 
 	@Override
-	public List<Fondo> buscarTodos() {
-		return fondoRepository.findAll();
+	public FondoResponse createFondo(FondoRequest fondoRequest) {
+		return fondoMapper.EntityToData(fondoRepository.save(fondoMapper.dataToEntity(fondoRequest)));
 	}
 
 	@Override
-	public Fondo buscarPorId(int idFondo) {
-		Optional<Fondo> optional = fondoRepository.findById(idFondo);
-		if(optional.isPresent())
-			return optional.get();
-		return null;
+	public List<FondoResponse> getAllFondo() {
+		return fondoRepository.findAll().stream().map(fondoMapper::EntityToData).collect(Collectors.toList());
+	}
+	
+	@Override
+	public FondoResponse getFondoById(Long idFondo) {
+		Fondo fondo = fondoRepository.findById(idFondo)
+				.orElseThrow(() -> new FondoException("No se encontro catalogo con id " + idFondo));
+		return fondoMapper.EntityToData(fondo);
 	}
 
 	@Override
-	public void eliminar(int idFondo) {
-		fondoRepository.deleteById(idFondo);
+	public FondoResponse updateFondo(FondoRequest fondoRequest, Long idFondo) {
+		Fondo fondo = fondoRepository.findById(idFondo)
+				.orElseThrow(() -> new FondoException("No se encontro el fondo" + idFondo));
+		return fondoMapper.EntityToData(fondoRepository.save(fondoMapper.dataToEntityUpdate(fondoRequest, fondo)));
 	}
+
+
+
+	
 
 }

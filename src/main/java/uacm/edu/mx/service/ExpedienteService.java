@@ -16,6 +16,4 @@ public interface ExpedienteService {
 	Expediente buscarPorNombre(String nombreExpediente);
 	List<Expediente> buscarPorFecha(Date fechaAperturaStart, Date fechaAperturaEnd);
 	
-	
-
 }

@@ -1,0 +1,268 @@
+Listado de rutas de carpetas
+El n£mero de serie del volumen es A692-4B80
+C:.
+|   tree.txt
+|   tree3.txt
+|   treefull.txt
+|   
++---main
+|   +---java
+|   |   \---uacm
+|   |       \---edu
+|   |           \---mx
+|   |               |   ControlDeCorrespondenciaApplication.java
+|   |               |   Datos.java
+|   |               |   SpringFoxConfig.java
+|   |               |   
+|   |               +---auth
+|   |               |   |   package-info.java
+|   |               |   |   
+|   |               |   +---controller
+|   |               |   |       AuthController.java
+|   |               |   |       
+|   |               |   +---domain
+|   |               |   |       ERole.java
+|   |               |   |       Role.java
+|   |               |   |       User.java
+|   |               |   |       Usuario.java
+|   |               |   |       VerificationToken.java
+|   |               |   |       
+|   |               |   +---dto
+|   |               |   |       AuthenticationResponse.java
+|   |               |   |       KeyAndNewPass.java
+|   |               |   |       LoginRequest.java
+|   |               |   |       PasswordResetRequest.java
+|   |               |   |       RefreshTokenRequest.java
+|   |               |   |       RegisterRequest.java
+|   |               |   |       UsuarioRequest.java
+|   |               |   |       
+|   |               |   +---mapper
+|   |               |   |       UsuarioMapper.java
+|   |               |   |       
+|   |               |   +---repository
+|   |               |   |       RoleRepository.java
+|   |               |   |       UserRepository.java
+|   |               |   |       UsuarioRepository.java
+|   |               |   |       VerificationTokenRepository.java
+|   |               |   |       
+|   |               |   \---servicio
+|   |               |       |   AuthService.java
+|   |               |       |   UserDetailsImpl.java
+|   |               |       |   UsuarioService.java
+|   |               |       |   
+|   |               |       \---impl
+|   |               |               AuthServiceImpl.java
+|   |               |               UserDetailsServiceImpl.java
+|   |               |               UsuarioServiceImpl.java
+|   |               |               
+|   |               +---config
+|   |               |       WebConfig.java
+|   |               |       
+|   |               +---controller
+|   |               |       CatalogoController.java
+|   |               |       CorrespondenciaEnviadaController.java
+|   |               |       CorrespondenciaRecibidaController.java
+|   |               |       ExpedienteController.java
+|   |               |       FondoController.java
+|   |               |       IndexController.java
+|   |               |       
+|   |               +---data
+|   |               |       CatalogoRequest.java
+|   |               |       CatalogoResponse.java
+|   |               |       CatalogoValorRequest.java
+|   |               |       CatalogoValorResponse.java
+|   |               |       ExpedienteRequest.java
+|   |               |       ExpedienteResponse.java
+|   |               |       FondoRequest.java
+|   |               |       FondoResponse.java
+|   |               |       RecibidaRequest.java
+|   |               |       RecibidaResponse.java
+|   |               |       
+|   |               +---exception
+|   |               |       CatalogoException.java
+|   |               |       RecibidaException.java
+|   |               |       SpringUserException.java
+|   |               |       
+|   |               +---mapper
+|   |               |       CatalogoMapper.java
+|   |               |       ExpedienteMapper.java
+|   |               |       FondoMapper.java
+|   |               |       RecibidaMapper.java
+|   |               |       
+|   |               +---model
+|   |               |       Catalogo.java
+|   |               |       CatalogoValores.java
+|   |               |       Correspondencia.java
+|   |               |       CorrespondenciaEnviada.java
+|   |               |       CorrespondenciaRecibida.java
+|   |               |       Direccion.java
+|   |               |       Expediente.java
+|   |               |       Fondo.java
+|   |               |       Usuario.java
+|   |               |       
+|   |               +---repository
+|   |               |       CatalogoRepository.java
+|   |               |       CatalogoValorRepository.java
+|   |               |       CorrespondeciaEnviadaRepository.java
+|   |               |       CorrespondeciaRecibidaRepository.java
+|   |               |       DireccionRepository.java
+|   |               |       ExpedienteRepository.java
+|   |               |       FondoRepository.java
+|   |               |       
+|   |               +---security
+|   |               |   |   WebSecurityConfig.java
+|   |               |   |   
+|   |               |   \---jwt
+|   |               |           AuthEntryPointJwt.java
+|   |               |           AuthTokenFilter.java
+|   |               |           JwtUtils.java
+|   |               |           
+|   |               \---service
+|   |                   |   ExpedienteService.java
+|   |                   |   GenerateExcelFileCorrRecPorFechaRecepService.java
+|   |                   |   ICatalogoService.java
+|   |                   |   ICatalogoValorService.java
+|   |                   |   ICorrespondenciaEnviadaService.java
+|   |                   |   ICorrespondenciaRecibidaService.java
+|   |                   |   IFondoService.java
+|   |                   |   
+|   |                   \---impl
+|   |                           CatalogoServiceImpl.java
+|   |                           CatalogoValorServiceImpl.java
+|   |                           CorrespondenciaEnviadaServiceImpl.java
+|   |                           CorrespondenciaRecibidaServiceImpl.java
+|   |                           ExpedienteServiceImpl.java
+|   |                           FondoServiceImpl.java
+|   |                           GenerateExcelFileCorrRecPorFechaRecepImpl.java
+|   |                           
+|   \---resources
+|       |   application.properties
+|       |   data.sql
+|       |   springblog.jks
+|       |   treeApp.txt
+|       |   
+|       +---static
+|       \---templates
+|           |   index.html
+|           |   
+|           +---catalogos
+|           |       listaAnexo.html
+|           |       listaArchivos.html
+|           |       listaArea.html
+|           |       listaCargo.html
+|           |       listaCarpetaFisica.html
+|           |       listaCategorias.html
+|           |       listaEmisorReceptor.html
+|           |       listaEstatus.html
+|           |       listaFondo.html
+|           |       listaInstruccion.html
+|           |       listaMedio.html
+|           |       listaPersona.html
+|           |       listaPrioridad.html
+|           |       listaSeccion.html
+|           |       listaSerie.html
+|           |       listaSubSeccion.html
+|           |       listaSubSerie.html
+|           |       listaTipoDocumento.html
+|           |       
+|           +---correspondenciaEnviada
+|           |   |   agregarCorrEnviada.html
+|           |   |   buscarCorrEnviada.html
+|           |   |   buscarCorrRecibidaPorArea.html
+|           |   |   corrRecPendienteSolucion.html
+|           |   |   modificarCorrEnviada.html
+|           |   |   modificarCorrRecibida.html
+|           |   |   
+|           |   \---fragments
+|           |           buscarDocumento.html
+|           |           buscarPorReferencia.html
+|           |           formBuscarCorrEnv.html
+|           |           formGuardarCorrEnviada.html
+|           |           formModificarCorrEnv.html
+|           |           listaPendienteDeSolucion.html
+|           |           listaPorAreas.html
+|           |           listaPorEstatus.html
+|           |           listaPorFechaEnvio.html
+|           |           listaPorFechaEnvMod.html
+|           |           listaPorPrioridad.html
+|           |           
+|           +---correspondenciaRecibida
+|           |   |   agregarCorrRecibida.html
+|           |   |   buscarCorrRecibida.html
+|           |   |   buscarCorrRecibidaPorArea.html
+|           |   |   corrRecPendienteSolucion.html
+|           |   |   modificarCorrRecibida.html
+|           |   |   
+|           |   \---fragments
+|           |           buscarDocumento.html
+|           |           buscarDocumentoPorReferncia.html
+|           |           buscarPorReferencia.html
+|           |           formBuscarCorrRec.html
+|           |           formGuardarCorrRec.html
+|           |           formModificarCorrRec.html
+|           |           listaPendienteDeSolucion.html
+|           |           listaPorAreas.html
+|           |           listaPorEstatus.html
+|           |           listaPorFechaRecep.html
+|           |           listaPorFechaRecepMod.html
+|           |           listaPorPrioridad.html
+|           |           
+|           +---expediente
+|           |   |   agregarExpediente.html
+|           |   |   buscarExpedientes.html
+|           |   |   listaExpedientesPorFecha.html
+|           |   |   modificarExpediente.html
+|           |   |   
+|           |   \---fragments
+|           |           buscarExpedientePorNombre.html
+|           |           formBuscar.html
+|           |           formGuardar.html
+|           |           listaExpedientes.html
+|           |           listaExpedientesPorFecha.html
+|           |           modificarExpedientePorNombre.html
+|           |           
+|           +---fragments
+|           |       footer.html
+|           |       head.html
+|           |       navbar.html
+|           |       sidebar.html
+|           |       
+|           \---usuario
+|                   acceso.html
+|                   
+\---test
+    |   tree.txt
+    |   
+    \---java
+        |   import.sql
+        |   
+        \---uacm
+            \---edu
+                \---mx
+                    +---controller
+                    |       CatalogoControllerTest.java
+                    |       CorrespondenciaEnviadaControllerTest.java
+                    |       CorrespondenciaRecibidaControllerTest.java
+                    |       ExpedienteControllerTest.java
+                    |       FondoControllerTest.java
+                    |       IndexControllerTest.java
+                    |       
+                    +---mapper
+                    |       CatalogoMapperTest.java
+                    |       ExpedienteMapperTest.java
+                    |       FondoMapperTest.java
+                    |       RecibidaMapperTest.java
+                    |       
+                    +---repository
+                    |       CalalogoValoresTest.java
+                    |       CatalogoRepositoryTest.java
+                    |       ExpedienteRepositoryTest.java
+                    |       
+                    \---service
+                        \---impl
+                                CatalogoServiceImplTest.java
+                                CatalogoValorServiceImplTest.java
+                                CorrespondenciaRecibidaServiceImplTest.java
+                                ExpedienteServiceImplTest.java
+                                FondoServiceImplTest.java
+                                

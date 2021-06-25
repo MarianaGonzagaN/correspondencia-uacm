@@ -1,16 +1,6 @@
 package uacm.edu.mx.data;
 
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
 import uacm.edu.mx.model.CatalogoValores;
 import uacm.edu.mx.model.Expediente;

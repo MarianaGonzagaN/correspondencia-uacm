@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import uacm.edu.mx.data.CatalogoResponse;
@@ -25,22 +26,22 @@ import uacm.edu.mx.data.ExpedienteRequest;
 import uacm.edu.mx.data.ExpedienteResponse;
 import uacm.edu.mx.model.Expediente;
 import uacm.edu.mx.service.ExpedienteService;
-import uacm.edu.mx.service.FondoService;
+import uacm.edu.mx.service.IFondoService;
 import static org.springframework.http.HttpStatus.OK;
 
 
-@Controller
-@RequestMapping("/expediente")
+@RestController
+@RequestMapping(value = "/api/expediente")
 public class ExpedienteController {
 	
 	private final Logger logger = LoggerFactory.getLogger(ExpedienteController.class);
 	
 	private final ExpedienteService expedienteService;
-	private final FondoService fondoService;
+	private final IFondoService fondoService;
 
 	
 	@Autowired
-	public ExpedienteController(final ExpedienteService expedienteService, final FondoService fondoService) {
+	public ExpedienteController(final ExpedienteService expedienteService, final IFondoService fondoService) {
 		this.expedienteService = expedienteService;
 		this.fondoService = fondoService;
 	}

@@ -10,5 +10,10 @@ public class CatalogoRequest {
 	public CatalogoRequest() {
 		super();
 	}
+
+	public CatalogoRequest(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
     
 }

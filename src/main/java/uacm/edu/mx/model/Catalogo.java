@@ -24,12 +24,19 @@ public class Catalogo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    @Column(name = "catalogo_nombre", length = 100)
+    @Column(name = "catalogo_nombre")
     private String nombre;
 
 	public Catalogo() {
 		super();
 	}
+
+	public Catalogo(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
+
 
 
 }

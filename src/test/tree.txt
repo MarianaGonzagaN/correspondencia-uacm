@@ -1,0 +1,38 @@
+Listado de rutas de carpetas
+El n£mero de serie del volumen es A692-4B80
+C:.
+|   tree.txt
+|   
+\---java
+    |   import.sql
+    |   
+    \---uacm
+        \---edu
+            \---mx
+                +---controller
+                |       CatalogoControllerTest.java
+                |       CorrespondenciaEnviadaControllerTest.java
+                |       CorrespondenciaRecibidaControllerTest.java
+                |       ExpedienteControllerTest.java
+                |       FondoControllerTest.java
+                |       IndexControllerTest.java
+                |       
+                +---mapper
+                |       CatalogoMapperTest.java
+                |       ExpedienteMapperTest.java
+                |       FondoMapperTest.java
+                |       RecibidaMapperTest.java
+                |       
+                +---repository
+                |       CalalogoValoresTest.java
+                |       CatalogoRepositoryTest.java
+                |       ExpedienteRepositoryTest.java
+                |       
+                \---service
+                    \---impl
+                            CatalogoServiceImplTest.java
+                            CatalogoValorServiceImplTest.java
+                            CorrespondenciaRecibidaServiceImplTest.java
+                            ExpedienteServiceImplTest.java
+                            FondoServiceImplTest.java
+                            

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import uacm.edu.mx.model.Fondo;
 
 @Repository
-public interface FondoRepository extends JpaRepository<Fondo, Integer> {
+public interface FondoRepository extends JpaRepository<Fondo, Long> {
 
 }

@@ -32,7 +32,7 @@ public class CatalogoValores {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "catalogo_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore

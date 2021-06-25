@@ -1,0 +1,1 @@
+INSERT INTO catalogo (id,catalogo_nombre) values (2,'Catalogo Sección')

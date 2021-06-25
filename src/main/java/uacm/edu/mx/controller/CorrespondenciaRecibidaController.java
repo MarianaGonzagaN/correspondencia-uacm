@@ -47,10 +47,11 @@ import org.springframework.http.ResponseEntity;
 
 @Slf4j
 @RestController
-@RequestMapping("correspondencia/recibida")
+@RequestMapping(value = "/api/recibida")
 public class CorrespondenciaRecibidaController {
 
 	private final ICorrespondenciaRecibidaService corrRecService;
+	
 	@Autowired
 	public CorrespondenciaRecibidaController(
 			final ExpedienteService expedienteService, final ICorrespondenciaRecibidaService corrRecService,
@@ -58,13 +59,6 @@ public class CorrespondenciaRecibidaController {
 		this.corrRecService = corrRecService;
 	}
 	
-
-	@GetMapping("buscarTurno/")
-	public String buscarPorTurno() {
-		String turno = "0";
-		return turno = corrRecService.max();
-	}
-
 	@PostMapping("/guardarConDoc")
 	public ResponseEntity<RecibidaResponse>  guardarCorr( @RequestParam("file") MultipartFile file,@ModelAttribute("recibidaRequest") RecibidaRequest recibidaRequest)
 			throws IOException, ParseException {
@@ -77,6 +71,10 @@ public class CorrespondenciaRecibidaController {
 		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
 	}
 	
+	@GetMapping("/{referencia}")
+	public ResponseEntity<RecibidaResponse> buscarPorReferencia(@RequestParam("referencia") String referencia) {
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorId(referencia));
+	}
 	
 	@PostMapping("guardar")
 	public ResponseEntity<RecibidaResponse>  guardarCorrespondencia( @RequestBody RecibidaRequest recibidaRequest) throws ParseException
@@ -87,10 +85,12 @@ public class CorrespondenciaRecibidaController {
 	
 	
 
-	@GetMapping("/{referencia}")
-	public ResponseEntity<RecibidaResponse> buscarPorReferencia(@RequestParam("referencia") String referencia) {
-		return ResponseEntity.status(OK).body(corrRecService.buscarPorId(referencia));
+	@GetMapping("buscarTurno/")
+	public String buscarPorTurno() {
+		String turno = "0";
+		return turno = corrRecService.max();
 	}
+
 	
 	@GetMapping( value = "/buscarPorFechaRecep")
 	public ResponseEntity<List<RecibidaResponse>> buscarCorrespondencias(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd) {
