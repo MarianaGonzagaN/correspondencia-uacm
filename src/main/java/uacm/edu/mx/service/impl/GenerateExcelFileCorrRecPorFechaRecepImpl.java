@@ -75,7 +75,7 @@ public class GenerateExcelFileCorrRecPorFechaRecepImpl implements GenerateExcelF
 	        	//dataRow.createCell(3).setCellValue(corrRecPorFechaRecep.get(i).getIdAreaEnvia().getNombre());
 	        	dataRow.createCell(4).setCellValue(corrRecPorFechaRecep.get(i).getAsunto());
 	        	//dataRow.createCell(5).setCellValue(corrRecPorFechaRecep.get(i).getIdTurnadoA().getNombre());
-	        	dataRow.createCell(6).setCellValue(corrRecPorFechaRecep.get(i).getExpediente().getNombreExpediente());
+	        	dataRow.createCell(6).setCellValue(corrRecPorFechaRecep.get(i).getIdExpediente().getNombreExpediente());
 	        }
 	     // Making size of column auto resize to fit with data
 	        sheet.autoSizeColumn(0);

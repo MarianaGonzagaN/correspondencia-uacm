@@ -40,7 +40,7 @@ import uacm.edu.mx.data.RecibidaRequest;
 import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 import uacm.edu.mx.service.ICorrespondenciaRecibidaService;
-import uacm.edu.mx.service.ExpedienteService;
+import uacm.edu.mx.service.IExpedienteService;
 import uacm.edu.mx.service.GenerateExcelFileCorrRecPorFechaRecepService;
 
 import org.springframework.http.ResponseEntity;
@@ -54,7 +54,7 @@ public class CorrespondenciaRecibidaController {
 	
 	@Autowired
 	public CorrespondenciaRecibidaController(
-			final ExpedienteService expedienteService, final ICorrespondenciaRecibidaService corrRecService,
+			final IExpedienteService expedienteService, final ICorrespondenciaRecibidaService corrRecService,
 			final GenerateExcelFileCorrRecPorFechaRecepService genFileCorrRecFechRecepService) {
 		this.corrRecService = corrRecService;
 	}
@@ -65,15 +65,15 @@ public class CorrespondenciaRecibidaController {
 
 		String nombre = file.getOriginalFilename();
 		String tipo = file.getContentType();
-		recibidaRequest.setTipoDocumento(tipo);
-		recibidaRequest.setNombreDocumento(nombre);
+		recibidaRequest.setTipoDocumentoRecibido(tipo);
+		recibidaRequest.setNombreDocumentoRecibido(nombre);
 		recibidaRequest.setDocumento(file.getBytes());
 		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
 	}
 	
 	@GetMapping("/{referencia}")
-	public ResponseEntity<RecibidaResponse> buscarPorReferencia(@RequestParam("referencia") String referencia) {
-		return ResponseEntity.status(OK).body(corrRecService.buscarPorId(referencia));
+	public ResponseEntity<RecibidaResponse> buscarPorReferencia(@RequestParam("referenciaDocumento") String referenciaDocumento) {
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorReferencia(referenciaDocumento));
 	}
 	
 	@PostMapping("guardar")
@@ -83,8 +83,6 @@ public class CorrespondenciaRecibidaController {
 		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
 	}
 	
-	
-
 	@GetMapping("buscarTurno/")
 	public String buscarPorTurno() {
 		String turno = "0";
@@ -92,44 +90,38 @@ public class CorrespondenciaRecibidaController {
 	}
 
 	
-	@GetMapping( value = "/buscarPorFechaRecep")
-	public ResponseEntity<List<RecibidaResponse>> buscarCorrespondencias(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd) {
+	@GetMapping( "/buscarPorFechaRecep")
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorFechaDeRecep(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd) {
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcion(fechaRecepcionStart,
 				fechaRecepcionEnd));
 	}
+
+	@GetMapping( "/vigencia")
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorFechaReqDeRespuesta(@RequestParam ("fechaReqRespStart") Date fechaReqRespStart, @RequestParam ("fechaReqRespEnd") Date fechaReqRespEnd) {
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcion(fechaReqRespStart,
+				fechaReqRespEnd));
+	}
 	
 
-	@GetMapping(value = "/buscarPorArea")
+	@GetMapping("/buscarPorArea")
 	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorAreaRemitente(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, Integer id) {
 
-		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcionAndAreaEnvia(fechaRecepcionStart,
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcionAndAreaRemitente(fechaRecepcionStart,
 				fechaRecepcionEnd,id));
 	}
 
-	/***
-	 * Método para buscar las correspondencias por estados
-	 * 
-	 */
 	@GetMapping("/estatus/{id}")
 	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorEstatus(@PathVariable("id") final Integer id) {
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorEstatus(id));
 
 	}
 
-	/***
-	 * Método para buscar las correspondencias por prioridad
-	 * 
-	 */
 	@GetMapping("/prioridad/{id}")
 	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorPrioridad(@PathVariable("id") final Integer id) {
 
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorPrioridad(id));
 	}
 
-	/***
-	 * Método para buscar las correspondencias por referencia
-	 * 
-	 */
 
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {

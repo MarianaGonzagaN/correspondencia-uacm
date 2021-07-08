@@ -3,29 +3,15 @@ package uacm.edu.mx.service.impl;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-
 import uacm.edu.mx.data.RecibidaRequest;
 import uacm.edu.mx.data.RecibidaResponse;
-import uacm.edu.mx.exception.CatalogoException;
-import uacm.edu.mx.exception.RecibidaException;
 import uacm.edu.mx.mapper.RecibidaMapper;
-import uacm.edu.mx.model.Catalogo;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
 import uacm.edu.mx.repository.CorrespondeciaRecibidaRepository;
 import uacm.edu.mx.service.ICorrespondenciaRecibidaService;
-import static org.springframework.http.HttpStatus.OK;
-import uacm.edu.mx.data.CatalogoResponse;
-import uacm.edu.mx.data.CatalogoValorResponse;
-import java.text.ParseException;
 
 @Service
 public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecibidaService {
@@ -50,9 +36,8 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 	}
 
 	@Override
-	public RecibidaResponse buscarPorId(String referencia) {
-		CorrespondenciaRecibida corrRec = corrRecRepository.findById(referencia).orElseThrow(
-				() -> new RecibidaException("No se encontró la correspondencia con la referencia" + referencia));
+	public RecibidaResponse buscarPorReferencia(String referencia) {
+		CorrespondenciaRecibida corrRec = corrRecRepository.findByReferencia(referencia);
 		return recibidaMapper.EntityToData(corrRec);
 
 	}
@@ -74,11 +59,16 @@ public class CorrespondenciaRecibidaServiceImpl implements ICorrespondenciaRecib
 	}
 
 	@Override
-	public List<RecibidaResponse>
-
-			buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart, Date fechaRecepcionEnd, Integer areaId) {
-		return corrRecRepository.findByFechaRecepcionAndAreaEnvia(fechaRecepcionStart, fechaRecepcionEnd, areaId)
+	public List<RecibidaResponse> buscarPorFechaRecepcionAndAreaRemitente(Date fechaRecepcionStart, Date fechaRecepcionEnd,
+			Integer areaId) {
+		return corrRecRepository.findByFechaRecepcionAndAreaRemitente(fechaRecepcionStart, fechaRecepcionEnd, areaId)
 				.stream().map(recibidaMapper::EntityToData).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RecibidaResponse> buscarPorFechaRequeridaDeRespuesta(Date fechaReqRespStart, Date fechaReqRespEnd) {
+		return corrRecRepository.findByfechaRequeridaRespuesta(fechaReqRespStart, fechaReqRespEnd).stream()
+				.map(recibidaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override

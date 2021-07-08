@@ -3,11 +3,8 @@ package uacm.edu.mx.mapper;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
-import uacm.edu.mx.data.CatalogoRequest;
-import uacm.edu.mx.data.CatalogoResponse;
 import uacm.edu.mx.data.FondoRequest;
 import uacm.edu.mx.data.FondoResponse;
-import uacm.edu.mx.model.Catalogo;
 import uacm.edu.mx.model.Fondo;
 
 @Slf4j

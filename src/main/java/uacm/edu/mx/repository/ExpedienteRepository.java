@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import uacm.edu.mx.model.Expediente;
 
 @Repository
-public interface ExpedienteRepository extends JpaRepository<Expediente, Integer> {
+public interface ExpedienteRepository extends JpaRepository<Expediente, Long> {
 	
 	Expediente findByNombreExpediente(String nombreExpediente);
 	List<Expediente> findAllByFechaAperturaBetween(

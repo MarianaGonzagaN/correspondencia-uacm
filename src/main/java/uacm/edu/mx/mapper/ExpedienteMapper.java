@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 import uacm.edu.mx.data.ExpedienteRequest;
 import uacm.edu.mx.data.ExpedienteResponse;
+import uacm.edu.mx.data.FondoResponse;
 import uacm.edu.mx.model.Expediente;
+import uacm.edu.mx.model.Fondo;
 
 @Slf4j
 @Component
@@ -16,7 +18,7 @@ public class ExpedienteMapper {
 		Expediente expediente = new Expediente();
 		expediente.setFechaApertura(expedienteRequest.getFechaApertura());
 		expediente.setNombreExpediente(expedienteRequest.getNombreExpediente());
-		//expediente.setIdFondo(expedienteRequest.getIdFondo());
+		expediente.setIdFondo(expedienteRequest.getIdFondo());
 		expediente.setIdSeccion(expedienteRequest.getIdSeccion());
 		expediente.setIdSubSeccion(expedienteRequest.getIdSubSeccion());
 		expediente.setIdSerie(expedienteRequest.getIdSerie());
@@ -28,15 +30,34 @@ public class ExpedienteMapper {
 	public ExpedienteResponse EntityToData(Expediente expediente) {
 
 		ExpedienteResponse expedienteResponse = new ExpedienteResponse();
-		expedienteResponse.setId(expediente.getIdExpediente());
+		expedienteResponse.setIdExpediente(expediente.getIdExpediente());
 		expedienteResponse.setFechaApertura(expediente.getFechaApertura());
 		expedienteResponse.setNombreExpediente(expediente.getNombreExpediente());
-		//expedienteResponse.setIdFondo(expediente.getIdFondo());
+		expedienteResponse.setIdFondo(expediente.getIdFondo());
 		expedienteResponse.setIdSeccion(expediente.getIdSeccion());
 		expedienteResponse.setIdSubSeccion(expediente.getIdSubSeccion());
 		expedienteResponse.setIdSerie(expediente.getIdSerie());
 		expedienteResponse.setIdSubSerie(expediente.getIdSubSerie());
 		expedienteResponse.setCarpetaFisica(expediente.getCarpetaFisica());
+		return expedienteResponse;
+	}
+	
+	public Expediente dataToEntityUpdate(ExpedienteRequest expedienteRequest, Expediente expediente) {
+
+		expediente.setFechaApertura(expedienteRequest.getFechaApertura());
+		expediente.setNombreExpediente(expedienteRequest.getNombreExpediente());
+		expediente.setIdFondo(expedienteRequest.getIdFondo());
+		expediente.setIdSeccion(expedienteRequest.getIdSeccion());
+		expediente.setIdSubSeccion(expedienteRequest.getIdSubSeccion());
+		expediente.setIdSerie(expedienteRequest.getIdSerie());
+		expediente.setIdSubSerie(expedienteRequest.getIdSubSerie());
+		expediente.setCarpetaFisica(expedienteRequest.getCarpetaFisica());
+		return expediente;
+	}
+	
+	public ExpedienteResponse expedienteResponse(Expediente expediente) {
+
+		ExpedienteResponse expedienteResponse = new ExpedienteResponse();
 		return expedienteResponse;
 	}
 

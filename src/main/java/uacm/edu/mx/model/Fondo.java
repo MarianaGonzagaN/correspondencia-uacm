@@ -61,4 +61,9 @@ public class Fondo {
 		super();
 	}
 	
+	public Fondo(Long id) {
+		super();
+        this.id = id;
+	}
+	
 }

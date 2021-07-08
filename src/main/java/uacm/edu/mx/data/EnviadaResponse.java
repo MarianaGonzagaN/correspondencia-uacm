@@ -8,7 +8,7 @@ import uacm.edu.mx.model.Expediente;
 
 @Data
 @NoArgsConstructor
-public class RecibidaResponse {
+public class EnviadaResponse {
 
 	private String referenciaDocumento;
 	private CatalogoValores idTipoDocumento;
@@ -33,21 +33,17 @@ public class RecibidaResponse {
 	private Date fechaSolucion;
 	private Expediente idExpediente;
 	/************************************/
-	private String turno;
-	private String responsableRecepcion;
-	private CatalogoValores idAreaRemitente;
-	private String nombreRemitente;
-	private CatalogoValores idCargoRemitente;
-	private Date fechaRecepcion; 
-	private byte[] documento;
-	private CatalogoValores idTurnadoA;
-	private Date fechaTurnado;
+	private String respuestaTurno;
+	private Date fechaEnvio; 
+	private byte[] documentoEnviado;
+	private byte[] documentoRecibido;
+	private CatalogoValores idResponsableRecepcionAcuse;
+
 	
-	public RecibidaResponse(final String referenciaDocumento, final Date fechaRecepcion) {
+	public EnviadaResponse(final String referenciaDocumento, final Date fechaEnvio) {
 		this.referenciaDocumento = referenciaDocumento;
-		this.fechaRecepcion = fechaRecepcion;
+		this.fechaEnvio = fechaEnvio;
 	}
 	
 	
-
 }

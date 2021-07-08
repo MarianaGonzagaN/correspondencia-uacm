@@ -2,18 +2,26 @@ package uacm.edu.mx.service;
 
 import java.util.Date;
 import java.util.List;
-
-import uacm.edu.mx.data.RecibidaResponse;
-import uacm.edu.mx.model.CorrespondenciaEnviada;
+import uacm.edu.mx.data.EnviadaRequest;
+import uacm.edu.mx.data.EnviadaResponse;
 
 public interface ICorrespondenciaEnviadaService {
 	
-	List<CorrespondenciaEnviada> buscarTodos();
-	CorrespondenciaEnviada buscarPorId(String referencia);
-    List<CorrespondenciaEnviada> buscarPorFechaEnvio(Date fechaEnvioStart, Date fechaEnvioEnd);
-    List<CorrespondenciaEnviada> buscarPorFechaEnvioAndAreaRecibe (Date fechaEnvioStart, Date fechaEnvioEnd , Integer areaId);
-    List<CorrespondenciaEnviada> buscarPorEstatus (Integer estatusId);
-    List<CorrespondenciaEnviada> buscarPorPrioridad (Integer prioridadId);
+	public EnviadaResponse insertar(EnviadaRequest recibidaRequest);
+
+	public EnviadaResponse buscarPorReferencia(String referenciaDocumento);
+
+	public List<EnviadaResponse> buscarTodas();
+	
+	 public List<EnviadaResponse> buscarPorFechaEnvio(Date fechaEnvioStart, Date fechaEnvioEnd);
+	 
+	 public List<EnviadaResponse> buscarPorFechaEnvioAndAreaDestinataria(Date fechaEnvioIni, Date fechaEnvioFin , Integer areaId);
+	
+	 public List<EnviadaResponse> buscarPorEstatus (Integer estatusId);
+	 
+	 public List<EnviadaResponse> buscarPorPrioridad (Integer prioridadId);
+
+
     String buscarUltimoConsecutivo(String TipoDeDocumento);
 
 }

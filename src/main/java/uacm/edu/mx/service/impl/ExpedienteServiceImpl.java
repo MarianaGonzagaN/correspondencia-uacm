@@ -2,23 +2,23 @@ package uacm.edu.mx.service.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import uacm.edu.mx.data.CatalogoRequest;
-import uacm.edu.mx.data.CatalogoResponse;
 import uacm.edu.mx.data.ExpedienteRequest;
 import uacm.edu.mx.data.ExpedienteResponse;
+import uacm.edu.mx.data.FondoRequest;
+import uacm.edu.mx.data.FondoResponse;
 import uacm.edu.mx.mapper.ExpedienteMapper;
 import uacm.edu.mx.model.Expediente;
+import uacm.edu.mx.model.Fondo;
 import uacm.edu.mx.repository.ExpedienteRepository;
-import uacm.edu.mx.service.ExpedienteService;
+import uacm.edu.mx.service.IExpedienteService;
+import uacm.edu.mx.exception.ExpedienteException;
+import uacm.edu.mx.exception.FondoException;
 
 @Service
-public class ExpedienteServiceImpl implements ExpedienteService {
+public class ExpedienteServiceImpl implements IExpedienteService {
 	
 	
 	private final ExpedienteRepository expedienteRepository;
@@ -38,37 +38,35 @@ public class ExpedienteServiceImpl implements ExpedienteService {
 	
 	@Override
 	public List<ExpedienteResponse> getAllExpedientes() {
-		// TODO Auto-generated method stub
 		return expedienteRepository.findAll().stream().map(expedienteMapper::EntityToData).collect(Collectors.toList());
 	}
-
-
-	@Override
-	public Expediente buscarPorId(Integer idExpediente) {
-		Optional<Expediente> optional = expedienteRepository.findById(idExpediente);
-		if (optional.isPresent())
-			return optional.get();
-		return null;
-	
-	}
-
 	
 	@Override
-	public void eliminar(int idExpediente) {
-		expedienteRepository.deleteById(idExpediente);
-		
+	public List<ExpedienteResponse> getExpedienteByFecha(Date fechaAperturaStart, Date fechaAperturaEnd) {
+		return expedienteRepository.findAllByFechaAperturaBetween(fechaAperturaStart, fechaAperturaEnd)
+				.stream().map(expedienteMapper::EntityToData).collect(Collectors.toList());
 	}
+
 
 	@Override
-	public Expediente buscarPorNombre(String nombreExpediente) {
-		return expedienteRepository.findByNombreExpediente(nombreExpediente);
-	}
-
-	@Override
-	public List<Expediente> buscarPorFecha(Date fechaAperturaStart, Date fechaAperturaEnd) {
-		
-		return expedienteRepository.findAllByFechaAperturaBetween(fechaAperturaStart, fechaAperturaEnd);
-	}
-
+	public ExpedienteResponse getExpedienteById(Long idExpediente) {
+		Expediente expediente = expedienteRepository.findById(idExpediente)
+				.orElseThrow(() -> new ExpedienteException("No se encontro el expediente con  id " + idExpediente));
+		return expedienteMapper.EntityToData(expediente);
 	
+	}
+	@Override
+	public ExpedienteResponse getExpedienteByNombre(String nombreExpediente) {
+		Expediente expediente = expedienteRepository.findByNombreExpediente(nombreExpediente);
+		return expedienteMapper.EntityToData(expediente);
+	
+	}
+	@Override
+	public ExpedienteResponse updateExpediente(ExpedienteRequest expedienteRequest, Long idExpediente) {
+		Expediente expediente = expedienteRepository.findById(idExpediente)
+				.orElseThrow(() -> new ExpedienteException("No se encontro el expediente con  id" + idExpediente));
+		return expedienteMapper.EntityToData(expedienteRepository.save(expedienteMapper.dataToEntityUpdate(expedienteRequest, expediente)));
+	}
+
+
 }

@@ -10,7 +10,7 @@ import uacm.edu.mx.model.Fondo;
 @Data
 @NoArgsConstructor
 public class ExpedienteResponse {
-	private Integer id;
+	private Long idExpediente;
 	private Date fechaApertura; 
 	private String nombreExpediente;
 	private Fondo idFondo;

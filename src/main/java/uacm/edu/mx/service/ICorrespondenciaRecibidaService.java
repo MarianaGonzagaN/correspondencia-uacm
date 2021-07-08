@@ -14,14 +14,16 @@ public interface ICorrespondenciaRecibidaService {
 	
 	public RecibidaResponse insertar(RecibidaRequest recibidaRequest);
 
-	public RecibidaResponse buscarPorId(String referencia);
+	public RecibidaResponse buscarPorReferencia(String referenciaDocumento);
 
 	public List<RecibidaResponse> buscarTodas();
 
 	public List<RecibidaResponse> buscarPorFechaRecepcion(Date fechaRecepcionStart, Date fechaRecepcionEnd);
 
-	public List<RecibidaResponse> buscarPorFechaRecepcionAndAreaEnvia(Date fechaRecepcionStart, Date fechaRecepcionEnd,
+	public List<RecibidaResponse> buscarPorFechaRecepcionAndAreaRemitente(Date fechaRecepcionStart, Date fechaRecepcionEnd,
 			Integer areaId);
+	
+	public List<RecibidaResponse> buscarPorFechaRequeridaDeRespuesta(Date fechaReqRespStart, Date fechaReqRespEnd);
 
 	public List<RecibidaResponse> buscarPorEstatus(Integer estatusId);
 
