@@ -6,16 +6,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class CatalogoException extends RuntimeException{
 	
-    public CatalogoException() {
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4477123742431773390L;
+
+	public CatalogoException() {
         super();
     }
 
-    public CatalogoException(String message) {
-        super(message);
+    public CatalogoException(Long id) {
+        super("No se pudo encontrar el catalogo con id:"+id);
     }
 
-    public CatalogoException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
+	/*
+	 * public CatalogoException(String message, Throwable cause) { super(message,
+	 * cause); }
+	 */
 }

@@ -44,7 +44,7 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public CatalogoResponse update(CatalogoRequest catalogoRequest, Long catalogo_id) {
 		// TODO Auto-generated method stub
 		Catalogo catalogo = catalogoRepository.findById(catalogo_id)
-				.orElseThrow(() -> new CatalogoException("No se encontro catalogo a editar con id " + catalogo_id));
+				.orElseThrow(() -> new CatalogoException( catalogo_id));
 		return catalogoMapper
 				.EntityToData(catalogoRepository.save(catalogoMapper.dataToEntityUpdate(catalogoRequest, catalogo)));
 	}
@@ -54,14 +54,14 @@ public class CatalogoServiceImpl implements ICatalogoService {
 		// TODO Auto-generated method stub
 
 		Catalogo catalogo = catalogoRepository.findById(catalogo_id)
-				.orElseThrow(() -> new CatalogoException("No se encontro catalogo a borrar con id " + catalogo_id));
+				.orElseThrow(() -> new CatalogoException( catalogo_id));
 		catalogoRepository.delete(catalogo);
 	}
 
 	@Override
 	public CatalogoResponse getCatalogo(Long catalogo_id) {
 		Catalogo catalogo = catalogoRepository.findById(catalogo_id)
-				.orElseThrow(() -> new CatalogoException("No se encontro catalogo con id " + catalogo_id));
+				.orElseThrow(() -> new CatalogoException( catalogo_id));
 
 		List<CatalogoValorResponse> setCatalogoValores = catalogoValorRepository.findByCatalogo(catalogo).stream()
 				.map(catalogoMapper::EntityValorToData).collect(Collectors.toList());
@@ -90,7 +90,7 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public CatalogoResponse addValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_id) {
 
 		Catalogo catalogo = catalogoRepository.findById(catalogo_id)
-				.orElseThrow(() -> new CatalogoException("No se encontro catalogo con id " + catalogo_id));
+				.orElseThrow(() -> new CatalogoException(catalogo_id));
 		catalogoValorRepository.save(catalogoMapper.dataValorToEntity(catalogoValorRequest, catalogo));
 		List<CatalogoValorResponse> setCatalogoValores = catalogoValorRepository.findByCatalogo(catalogo).stream()
 				.map(catalogoMapper::EntityValorToData).collect(Collectors.toList());
@@ -102,7 +102,7 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public CatalogoResponse updateValorCatalogo(CatalogoValorRequest catalogoValorRequest, Long catalogo_valor_id) {
 
 		CatalogoValores catalogoValores = catalogoValorRepository.findById(catalogo_valor_id)
-				.orElseThrow(() -> new CatalogoException("No se encontro valor con id " + catalogo_valor_id));
+				.orElseThrow(() -> new CatalogoException(catalogo_valor_id));
 		
 		catalogoValores = catalogoMapper.dataValorToEntityUpdate(catalogoValorRequest, catalogoValores);
 		catalogoValorRepository.save(catalogoValores);
@@ -117,7 +117,7 @@ public class CatalogoServiceImpl implements ICatalogoService {
 	public void deleteValorCatalogo(Long catalogo_valor_id) {
 		
 		CatalogoValores catalogoValores = catalogoValorRepository.findById(catalogo_valor_id)
-				.orElseThrow(() -> new CatalogoException("No se encontro valor con id " + catalogo_valor_id));
+				.orElseThrow(() -> new CatalogoException( catalogo_valor_id));
 		catalogoValorRepository.delete(catalogoValores);
 
 	}

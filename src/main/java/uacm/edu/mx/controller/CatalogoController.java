@@ -2,11 +2,14 @@ package uacm.edu.mx.controller;
 
 import static org.springframework.http.HttpStatus.OK;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 import uacm.edu.mx.data.CatalogoRequest;
 import uacm.edu.mx.data.CatalogoResponse;
 import uacm.edu.mx.data.CatalogoValorRequest;
 import uacm.edu.mx.data.CatalogoValorResponse;
+import uacm.edu.mx.exception.ApiError;
+import uacm.edu.mx.exception.CatalogoException;
 import uacm.edu.mx.service.ICatalogoService;
 import uacm.edu.mx.service.ICatalogoValorService;
 
@@ -99,4 +106,6 @@ public class CatalogoController {
 		catalogoService.deleteValorCatalogo(id);
 		return ResponseEntity.status(OK).body("Valor Borrado!!");
 	}
+	
+	
 }

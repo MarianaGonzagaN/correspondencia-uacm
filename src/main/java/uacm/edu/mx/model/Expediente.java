@@ -1,8 +1,12 @@
 package uacm.edu.mx.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +24,13 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.Getter;
@@ -31,11 +41,18 @@ import lombok.Setter;
  * @author gonza
  *
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 @Entity
 @Table(name = "expediente",uniqueConstraints={@UniqueConstraint(columnNames={"nombre_expediente"})})
-public class Expediente {
+public class Expediente  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4693740868837056121L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,11 +99,17 @@ public class Expediente {
 	@Column(name = "carpeta_fisica",nullable = false)
 	private String carpetaFisica;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idExpediente" )
-	private List<CorrespondenciaRecibida> corrRecibidas;
+	  @OneToMany(fetch = FetchType.LAZY, mappedBy = "idExpediente" , cascade =
+	  CascadeType.ALL) 
+	  private Set<CorrespondenciaRecibida> corrRecibidas = new
+	  HashSet<>();
+	 
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idExpediente")
-	private List<CorrespondenciaEnviada> corrEnviadas;
+		/*
+		 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "idExpediente") private
+		 * Set<CorrespondenciaEnviada> corrEnviadas = new HashSet<>();
+		 */
+	 
 
 	public Expediente(Long idExpediente) {
 		super();

@@ -14,8 +14,10 @@ import uacm.edu.mx.model.CorrespondenciaRecibida;
 
 @Repository
 public interface CorrespondeciaRecibidaRepository extends JpaRepository<CorrespondenciaRecibida, Long> {
+	
+	@Query("SELECT c FROM CorrespondenciaRecibida c  where  c.fechaRecepcion BETWEEN :fechaRecepcionStart AND :fechaRecepcionEnd")
+	List<CorrespondenciaRecibida> findAllByFechaRecepcionBetween(@Param("fechaRecepcionStart") Date fechaRecepcionStart,@Param("fechaRecepcionEnd") Date fechaRecepcionEnd);
 
-	List<CorrespondenciaRecibida> findAllByFechaRecepcionBetween(Date fechaRecepcionStart, Date fechaRecepcionEnd);
 
 	@Query(value = "SELECT max(rtrim(c.turno,'-20')) FROM correspondencia_recibida c", nativeQuery = true)
 	public String max();

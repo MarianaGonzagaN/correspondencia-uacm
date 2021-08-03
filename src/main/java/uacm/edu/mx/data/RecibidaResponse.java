@@ -2,12 +2,14 @@ package uacm.edu.mx.data;
 
 import java.util.Date;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import uacm.edu.mx.model.CatalogoValores;
 import uacm.edu.mx.model.Expediente;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class RecibidaResponse {
 
 	private String referenciaDocumento;
@@ -43,11 +45,15 @@ public class RecibidaResponse {
 	private CatalogoValores idTurnadoA;
 	private Date fechaTurnado;
 	
-	public RecibidaResponse(final String referenciaDocumento, final Date fechaRecepcion) {
-		this.referenciaDocumento = referenciaDocumento;
-		this.fechaRecepcion = fechaRecepcion;
+	/*
+	 * public RecibidaResponse(final String referenciaDocumento, final Date
+	 * fechaRecepcion) { this.referenciaDocumento = referenciaDocumento;
+	 * this.fechaRecepcion = fechaRecepcion; }
+	 */
+	public RecibidaResponse() {
+
+		super();
 	}
-	
-	
+
 
 }

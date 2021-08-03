@@ -1,6 +1,7 @@
 package uacm.edu.mx.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -21,11 +22,17 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @MappedSuperclass
 public class Correspondencia {
 	
@@ -56,7 +63,7 @@ public class Correspondencia {
 	private CatalogoValores idMedio;
 	
 	@NotBlank(message = "el asunto es requerido")
-	@Size(max = 255)
+	@Size(min = 10,max = 255)
 	@Column(name="asunto",nullable = false, length = 255)
 	private String asunto;
 	
@@ -125,8 +132,10 @@ public class Correspondencia {
 	@Column(name="fecha_solucion",nullable =true)
 	private Date fechaSolucion;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_expediente",referencedColumnName = "id_expediente", nullable = false)
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_expediente", referencedColumnName = "id_expediente", nullable = false)
+	@JsonIgnore
 	private Expediente idExpediente;
 
 }

@@ -1,6 +1,9 @@
 package uacm.edu.mx.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,14 +17,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "correspondencia_recibida")
-public class CorrespondenciaRecibida extends Correspondencia {
+public class CorrespondenciaRecibida extends Correspondencia  implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2901918801841205946L;
 
 	@NotBlank(message = "el turno es requerido")
 	@Size(min = 8, max = 9)
@@ -29,7 +39,7 @@ public class CorrespondenciaRecibida extends Correspondencia {
 	private String turno;
 	
 	@NotBlank(message = "el responsable de recepción es requerido")
-	@Size(max = 100)
+	@Size(min = 10,max = 100)
 	@Column(name="responsable_recepcion",nullable = false, length = 100)
 	private String responsableRecepcion;
 	
@@ -39,7 +49,7 @@ public class CorrespondenciaRecibida extends Correspondencia {
 	private CatalogoValores idAreaRemitente;
 	
 	@NotBlank(message = "el nombre del remitente es requerido")
-	@Size(max = 100)
+	@Size(min = 10,max = 100)
 	@Column(name="nombre_remitente",nullable = false, length= 100)
 	private String nombreRemitente;
 	

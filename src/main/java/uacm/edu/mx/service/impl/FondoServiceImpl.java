@@ -43,14 +43,15 @@ public class FondoServiceImpl implements IFondoService {
 	@Override
 	public FondoResponse getFondoById(Long idFondo) {
 		Fondo fondo = fondoRepository.findById(idFondo)
-				.orElseThrow(() -> new FondoException("No se encontro el fondo con id" + idFondo));
+				.orElseThrow(() -> new FondoException(idFondo));
 		return fondoMapper.EntityToData(fondo);
 	}
 
 	@Override
 	public FondoResponse updateFondo(FondoRequest fondoRequest, Long idFondo) {
 		Fondo fondo = fondoRepository.findById(idFondo)
-				.orElseThrow(() -> new FondoException("No se encontro el fondo" + idFondo));
+				.orElseThrow(() -> new FondoException(idFondo));
+	
 		return fondoMapper.EntityToData(fondoRepository.save(fondoMapper.dataToEntityUpdate(fondoRequest, fondo)));
 	}
 

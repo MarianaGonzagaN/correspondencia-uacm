@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +29,12 @@ public class Direccion {
 	private Long idDireccion;
 	
 	@NotBlank(message = "calle  es requerido")
+	@Size(min= 5, max = 50)
 	@Column(name = "calle",nullable = false, length = 50)
 	private String calle;
 	
 	@NotBlank(message = "colonia es requerido")
+	@Size(min= 5, max = 50)
 	@Column(name = "colonia", nullable = false, length = 50)
 	private String colonia;
 	
@@ -40,10 +43,12 @@ public class Direccion {
 	private String codPostal;
 	
 	@NotBlank(message = "delegaciones requerido")
+	@Size(min= 5, max = 50)
 	@Column(name = "delegacion", nullable = false, length = 50)
 	private String delegacion;
 	
 	@NotBlank(message = "ciudad es requerido")
+	@Size(min= 4, max = 50)
 	@Column(name = "ciudad", nullable = false,  length = 50)
 	private String ciudad;
 	

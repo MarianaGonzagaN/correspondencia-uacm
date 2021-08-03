@@ -83,11 +83,12 @@ public class RecibidaMapper {
 		return recibidaResponse;
 	}
 		
-	public RecibidaResponse recibidaResponse(CorrespondenciaRecibida corrRec) {
-		RecibidaResponse recibidaResponse = new RecibidaResponse(null, null);
-		recibidaResponse.setReferenciaDocumento(corrRec.getReferenciaDocumento());
-		recibidaResponse.setFechaRecepcion(corrRec.getFechaRecepcion());
-		return recibidaResponse;
-	}
+	/*
+	 * public RecibidaResponse recibidaResponse(CorrespondenciaRecibida corrRec) {
+	 * RecibidaResponse recibidaResponse = new RecibidaResponse(null, null);
+	 * recibidaResponse.setReferenciaDocumento(corrRec.getReferenciaDocumento());
+	 * recibidaResponse.setFechaRecepcion(corrRec.getFechaRecepcion()); return
+	 * recibidaResponse; }
+	 */
 	
 }

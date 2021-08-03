@@ -17,14 +17,14 @@ public class RecibidaRequest {
 	private String nombreDestinatario;
 	private CatalogoValores idCargoDestinatario;
 	private CatalogoValores idPrioridad;
-	/************Anexos*******************/
+	/************ Anexos *******************/
 	private Integer existeAnexo;
 	private Integer numeroAnexos;
 	private String tipoAnexo;
 	private String ubicacionAnexo;
-	/************Seguimiento*******************/
+	/************ Seguimiento *******************/
 	private Date fechaRequeridaRespuesta;
-	private CatalogoValores idInstruccion; 
+	private CatalogoValores idInstruccion;
 	private String instruccionesAdicionales;
 	private CatalogoValores idEstatus;
 	private String solucion;
@@ -36,12 +36,15 @@ public class RecibidaRequest {
 	private CatalogoValores idAreaRemitente;
 	private String nombreRemitente;
 	private CatalogoValores idCargoRemitente;
-	private Date fechaRecepcion; 
+	private Date fechaRecepcion;
 	private byte[] documento;
 	private CatalogoValores idTurnadoA;
 	private Date fechaTurnado;
-   private String tipoDocumentoRecibido;
-   private String nombreDocumentoRecibido;
-   
+	private String tipoDocumentoRecibido;
+	private String nombreDocumentoRecibido;
+
+	public RecibidaRequest() {
+		super();
+	}
 
 }

@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +26,6 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping(value = "/api/expediente")
 public class ExpedienteController {
 
-	private final Logger logger = LoggerFactory.getLogger(ExpedienteController.class);
-
 	private final IExpedienteService expedienteService;
 
 	@Autowired
@@ -42,7 +38,7 @@ public class ExpedienteController {
 		return ResponseEntity.status(OK).body(expedienteService.createExpediente(expedienteRequest));
 	}
 
-	@GetMapping()
+	@GetMapping
 	public ResponseEntity<List<ExpedienteResponse>> getAllExpedientes() {
 		return ResponseEntity.status(OK).body(expedienteService.getAllExpedientes());
 	}
