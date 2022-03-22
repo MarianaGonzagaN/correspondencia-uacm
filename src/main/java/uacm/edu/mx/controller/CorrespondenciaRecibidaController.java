@@ -36,6 +36,8 @@ import lombok.extern.slf4j.Slf4j;
 import uacm.edu.mx.data.CatalogoRequest;
 import uacm.edu.mx.data.CatalogoResponse;
 import uacm.edu.mx.data.CatalogoValorRequest;
+import uacm.edu.mx.data.ExpedienteRequest;
+import uacm.edu.mx.data.ExpedienteResponse;
 import uacm.edu.mx.data.RecibidaRequest;
 import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.model.CorrespondenciaRecibida;
@@ -44,6 +46,8 @@ import uacm.edu.mx.service.IExpedienteService;
 import uacm.edu.mx.service.GenerateExcelFileCorrRecPorFechaRecepService;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.http.HttpStatus;
 
 @Slf4j
 @RestController
@@ -71,10 +75,9 @@ public class CorrespondenciaRecibidaController {
 		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
 	}
 	
-	@GetMapping("/{referencia}")
-	public ResponseEntity<RecibidaResponse> buscarPorReferencia(@RequestParam("referenciaDocumento") String referenciaDocumento) {
-		return ResponseEntity.status(OK).body(corrRecService.buscarPorReferencia(referenciaDocumento));
-	}
+	
+
+	
 	
 	@PostMapping("guardar")
 	public ResponseEntity<RecibidaResponse>  guardarCorrespondencia( @RequestBody RecibidaRequest recibidaRequest) throws ParseException
@@ -83,18 +86,53 @@ public class CorrespondenciaRecibidaController {
 		return ResponseEntity.status(OK).body(corrRecService.insertar(recibidaRequest));
 	}
 	
-	@GetMapping("buscarTurno/")
-	public String buscarPorTurno() {
-		String turno = "0";
-		return turno = corrRecService.max();
+
+
+	@PostMapping("/upload")
+	public ResponseEntity<RecibidaResponse>  uplaodImage(@RequestParam("archivo") MultipartFile file,@RequestParam("id") String  referenciaDocumento) throws IOException {
+		System.out.println("Original Image Byte Size - " + file.getBytes().length);
+		System.out.println("referencia de documento - " + referenciaDocumento);
+		String nombre = file.getOriginalFilename();
+		String tipo = file.getContentType();
+		byte[] contenido = file.getBytes();
+		System.out.println("El nombre del archivo es:  - " +nombre);
+		System.out.println("El tipo de archivo es:  - " + tipo);
+		System.out.println("El tipo de archivo es:  - " + contenido);
+	
+		
+		return ResponseEntity.status(OK).body(corrRecService.updateGuardarArchivo(referenciaDocumento,contenido,tipo,nombre));
+		//return ResponseEntity.status(HttpStatus.OK);
+	}
+
+	
+	@GetMapping("/buscarTurno")
+	public ResponseEntity<String> buscarPorTurno() {
+		System.out.println("entre al controler ---- buscar por turno");
+
+		return ResponseEntity.status(OK).body( corrRecService.max());
 	}
 
 	
 	@GetMapping( "/buscarPorFechaRecep")
 	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorFechaDeRecep(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd) {
+		System.out.print("Entre al metodo buscarCorrRecPorFechaDeRecep ");
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcion(fechaRecepcionStart,
 				fechaRecepcionEnd));
 	}
+	
+	@GetMapping("/referencia")
+	public ResponseEntity<RecibidaResponse> buscarPorReferencia(@RequestParam("referenciaDocumento") String referenciaDocumento) {
+		System.out.print("Entre al metodo controller buscar por referencia ");
+		return ResponseEntity.status(OK).body(corrRecService.buscarPorReferencia(referenciaDocumento));
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<RecibidaResponse> actualizarCorrRecibida(@RequestBody RecibidaRequest recibidaRequest,
+			@RequestParam("referencia") String referencia) {
+		System.out.print("Entre al metodo actualizarCorrRecibida ");
+		return ResponseEntity.status(OK).body(corrRecService.updateCorrRecibida(recibidaRequest, referencia));
+	}
+	
 
 	@GetMapping( "/vigencia")
 	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorFechaReqDeRespuesta(@RequestParam ("fechaReqRespStart") Date fechaReqRespStart, @RequestParam ("fechaReqRespEnd") Date fechaReqRespEnd) {
@@ -104,24 +142,25 @@ public class CorrespondenciaRecibidaController {
 	
 
 	@GetMapping("/buscarPorArea")
-	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorAreaRemitente(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, Integer id) {
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorAreaRemitente(@RequestParam ("fechaRecepcionStart") Date fechaRecepcionStart, @RequestParam ("fechaRecepcionEnd") Date fechaRecepcionEnd, @RequestParam ("idArea") Long  id) {
 
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorFechaRecepcionAndAreaRemitente(fechaRecepcionStart,
 				fechaRecepcionEnd,id));
 	}
 
-	@GetMapping("/estatus/{id}")
-	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorEstatus(@PathVariable("id") final Integer id) {
+	@GetMapping("/estatus")
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorEstatus(@RequestParam("idEstatus") final Long id) {
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorEstatus(id));
 
 	}
 
-	@GetMapping("/prioridad/{id}")
-	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorPrioridad(@PathVariable("id") final Integer id) {
+	@GetMapping("/prioridad")
+	public ResponseEntity<List<RecibidaResponse>> buscarCorrRecPorPrioridad(@RequestParam("idPrioridad") final Long id) {
 
 		return ResponseEntity.status(OK).body(corrRecService.buscarPorPrioridad(id));
 	}
-
+	
+	
 
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {

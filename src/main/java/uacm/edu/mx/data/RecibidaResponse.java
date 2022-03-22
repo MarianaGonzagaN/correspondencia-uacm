@@ -44,6 +44,8 @@ public class RecibidaResponse {
 	private byte[] documento;
 	private CatalogoValores idTurnadoA;
 	private Date fechaTurnado;
+	private String tipoDocumentoRecibido;
+	private String nombreDocumentoRecibido;
 	
 	/*
 	 * public RecibidaResponse(final String referenciaDocumento, final Date
@@ -53,6 +55,11 @@ public class RecibidaResponse {
 	public RecibidaResponse() {
 
 		super();
+	}
+	
+	public RecibidaResponse(final String referenciaDocumento, final Date fechaRecepcion) {
+		this.referenciaDocumento = referenciaDocumento;
+		this.fechaRecepcion = fechaRecepcion;
 	}
 
 

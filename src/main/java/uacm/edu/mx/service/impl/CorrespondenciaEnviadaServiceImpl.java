@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 import uacm.edu.mx.data.EnviadaRequest;
 import uacm.edu.mx.data.EnviadaResponse;
+import uacm.edu.mx.data.RecibidaRequest;
+import uacm.edu.mx.data.RecibidaResponse;
 import uacm.edu.mx.mapper.EnviadaMapper;
 import uacm.edu.mx.model.CorrespondenciaEnviada;
+import uacm.edu.mx.model.CorrespondenciaRecibida;
 import uacm.edu.mx.repository.CorrespondeciaEnviadaRepository;
 import uacm.edu.mx.service.ICorrespondenciaEnviadaService;
 
@@ -33,14 +36,47 @@ public class CorrespondenciaEnviadaServiceImpl implements ICorrespondenciaEnviad
 	public EnviadaResponse insertar(EnviadaRequest enviadaRequest) {
 		return enviadaMapper.enviadaResponse(corrEnvRepository.save(enviadaMapper.dataToEntity(enviadaRequest)));
 	}
+	
+	@Override
+	public EnviadaResponse updateCorrEnviada(EnviadaRequest enviadaRequest, String referencia) {
+		System.out.print("Entre al meto update corr env ");
+		CorrespondenciaEnviada corrEnv = corrEnvRepository.findByReferencia(referencia);
+		return enviadaMapper.EntityToData(corrEnvRepository.save(enviadaMapper.dataToEntityUpdate(enviadaRequest, corrEnv)));
+	}
+	
+	@Override
+	public EnviadaResponse updateGuardarArchivo(String referencia, byte[] contenido, String tipoDoc,
+			String nombreDoc) {
+		CorrespondenciaEnviada corrEnv = corrEnvRepository.findByReferencia(referencia);
+		 if (corrEnv != null) {
+			 return enviadaMapper.EntityToData(corrEnvRepository.save(enviadaMapper.dataToEntityUpdateDoc( corrEnv,contenido,tipoDoc,nombreDoc)));
+		 }else {
+			 return null;
+		 }
+		 
+		 
+	}
+	
+	@Override
+	public EnviadaResponse updateGuardarAcuse(String referencia, byte[] contenido, String tipoDoc,
+			String nombreDoc) {
+		CorrespondenciaEnviada corrEnv = corrEnvRepository.findByReferencia(referencia);
+		 if (corrEnv != null) {
+			 return enviadaMapper.EntityToData(corrEnvRepository.save(enviadaMapper.dataToEntityUpdateDocAcuse( corrEnv,contenido,tipoDoc,nombreDoc)));
+		 }else {
+			 return null;
+		 }
+		 
+		 
+	}
 
 	@Override
-	public EnviadaResponse buscarPorReferencia(String referenciaDocumento) {
-		CorrespondenciaEnviada corrEnv = corrEnvRepository.findByReferencia(referenciaDocumento);
+	public EnviadaResponse buscarPorReferencia(String referencia) {
+		CorrespondenciaEnviada corrEnv = corrEnvRepository.findByReferencia(referencia);
 		return enviadaMapper.EntityToData(corrEnv);
 
 	}
-
+	
 	@Override
 	public List<EnviadaResponse> buscarTodas() {
 		return corrEnvRepository.findAll().stream().map(enviadaMapper::EntityToData).collect(Collectors.toList());
@@ -48,27 +84,27 @@ public class CorrespondenciaEnviadaServiceImpl implements ICorrespondenciaEnviad
 
 	@Override
 	public List<EnviadaResponse> buscarPorFechaEnvio(Date fechaEnvioStart, Date fechaEnvioEnd) {
-		return corrEnvRepository.findAllByFechaEnvioBetween(fechaEnvioStart, fechaEnvioStart).stream()
+		return corrEnvRepository.findAllByFechaEnvioBetween(fechaEnvioStart, fechaEnvioEnd).stream()
 				.map(enviadaMapper::EntityToData).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<EnviadaResponse> buscarPorFechaEnvioAndAreaDestinataria(Date fechaEnvioIni, Date fechaEnvioFin,
-			Integer areaId) {
+			Long areaId) {
 
-		return corrEnvRepository.findByFechaRecepcionAndAreaDestinataria(fechaEnvioIni, fechaEnvioFin, areaId).stream()
+		return corrEnvRepository.findByFechaEnvioAndAreaDestinataria(fechaEnvioIni, fechaEnvioFin, areaId).stream()
 				.map(enviadaMapper::EntityToData).collect(Collectors.toList());
 
 	}
 	
 	@Override
-	public List<EnviadaResponse> buscarPorEstatus(Integer estatusId) {
+	public List<EnviadaResponse> buscarPorEstatus(Long estatusId) {
 		return corrEnvRepository.findByEstatus(estatusId).stream().map(enviadaMapper::EntityToData)
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public List<EnviadaResponse> buscarPorPrioridad(Integer prioridadId) {
+	public List<EnviadaResponse> buscarPorPrioridad(Long prioridadId) {
 		return corrEnvRepository.findByPrioridad(prioridadId).stream().map(enviadaMapper::EntityToData)
 				.collect(Collectors.toList());
 	}
@@ -78,16 +114,17 @@ public class CorrespondenciaEnviadaServiceImpl implements ICorrespondenciaEnviad
 	public String buscarUltimoConsecutivo(String TipoDeDocumento) {
 		// TODO Auto-generated method stub
 
-		System.out.print("----------------------------------------------------");
+		System.out.print("----------------------------------------------------"+ "\n" );
 		System.out.print("la referencia del documento es:" + TipoDeDocumento);
-		System.out.print("----------------------------------------------------");
+		System.out.print("----------------------------------------------------"+ "\n" );
 
 		String result = null;
 		switch (TipoDeDocumento) {
 		case "1":
+			System.out.print("Entre al caso oficio" );
 			Integer maxOficio = null;
 			maxOficio = corrEnvRepository.maxOficio();
-			String ultimoOficio = "UACM/SLT/COORD/OFI-" + maxOficio + "/2020";
+			String ultimoOficio = "UACM/SLT/COORD/OFI-" + maxOficio + "/2022";
 			result = ultimoOficio;
 			break;
 		case "2":
@@ -138,5 +175,7 @@ public class CorrespondenciaEnviadaServiceImpl implements ICorrespondenciaEnviad
 		return result;
 
 	}
+
+	
 
 }

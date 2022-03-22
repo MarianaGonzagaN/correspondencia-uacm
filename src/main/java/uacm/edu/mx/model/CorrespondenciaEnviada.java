@@ -46,7 +46,7 @@ public class CorrespondenciaEnviada extends Correspondencia{
 	
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_responsable_recepcion_acuse",referencedColumnName = "id",nullable = false)
+	@JoinColumn(name="id_responsable_recepcion_acuse",referencedColumnName = "id")
 	private CatalogoValores idResponsableRecepcionAcuse;
 	
 	@Column(name="tipo_documento_enviado")

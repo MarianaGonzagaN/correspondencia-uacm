@@ -22,17 +22,17 @@ public interface CorrespondeciaRecibidaRepository extends JpaRepository<Correspo
 	@Query(value = "SELECT max(rtrim(c.turno,'-20')) FROM correspondencia_recibida c", nativeQuery = true)
 	public String max();
 	
-	@Query(value = "SELECT c  from CorrespondenciaRecibida c where c.referencia=: referencia", nativeQuery = true)
+	@Query( "SELECT c  FROM CorrespondenciaRecibida c where c.referenciaDocumento=:referencia")
 	CorrespondenciaRecibida findByReferencia(@Param("referencia") String referencia);
 	
 	@Query("SELECT c FROM CorrespondenciaRecibida c where c.idAreaRemitente.id=:areaRemitente and  c.fechaRecepcion BETWEEN :fechRecIni AND :fechRecFin")
-	List<CorrespondenciaRecibida> findByFechaRecepcionAndAreaRemitente(@Param("fechRecIni") Date fechaRecepcionIni,@Param("fechRecFin") Date fechaRecepcionfin, @Param("areaRemitente") Integer areaRemitente);
+	List<CorrespondenciaRecibida> findByFechaRecepcionAndAreaRemitente(@Param("fechRecIni") Date fechaRecepcionIni,@Param("fechRecFin") Date fechaRecepcionfin, @Param("areaRemitente") Long areaRemitente);
 
 	@Query("SELECT c FROM CorrespondenciaRecibida c where c.idEstatus.id=:idEstatus")
-	List<CorrespondenciaRecibida> findByEstatus(@Param("idEstatus") Integer idEstatus);
+	List<CorrespondenciaRecibida> findByEstatus(@Param("idEstatus") Long idEstatus);
 
 	@Query("SELECT c FROM CorrespondenciaRecibida c where c.idPrioridad.id=:idPrioridad")
-	List<CorrespondenciaRecibida> findByPrioridad(@Param("idPrioridad") Integer idPrioridad);
+	List<CorrespondenciaRecibida> findByPrioridad(@Param("idPrioridad") Long idPrioridad);
 
 	@Query("SELECT c FROM CorrespondenciaRecibida c where c.fechaRequeridaRespuesta BETWEEN :fechaReqIni AND :fechaReqFin")
 	Collection<CorrespondenciaRecibida> findByfechaRequeridaRespuesta(@Param("fechaReqIni") Date fechaReqIni,

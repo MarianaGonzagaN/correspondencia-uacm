@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -62,7 +63,7 @@ public class CatalogoController {
 		return ResponseEntity.status(OK).body("Catalogo Borrado!!");
 	}
 
-	@PostMapping("/{id}/valor")
+	@PostMapping("/valorCatalogo/{id}")
 	public ResponseEntity<CatalogoResponse> createValorCatalogo(
 			@RequestBody final CatalogoValorRequest catalogoValorRequest, @PathVariable("id") final Long id) {
 
@@ -94,7 +95,7 @@ public class CatalogoController {
 		return ResponseEntity.status(OK).body(catalogoValorService.getValoresCatalogoByNombre(nombre));
 	}
 	
-	@PutMapping("valor/{id}")
+	@PutMapping("/valor/{id}")
 	public ResponseEntity<CatalogoResponse> updateCatalogoValor(@RequestBody final CatalogoValorRequest catalogoValorRequest,
 			@PathVariable("id") final Long id) {
 

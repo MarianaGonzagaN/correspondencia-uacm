@@ -26,6 +26,7 @@ public class ExpedienteMapper {
 		expediente.setCarpetaFisica(expedienteRequest.getCarpetaFisica());
 		return expediente;
 	}
+	
 
 	public ExpedienteResponse EntityToData(Expediente expediente) {
 
